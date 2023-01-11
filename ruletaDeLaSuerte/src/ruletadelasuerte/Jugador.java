@@ -82,8 +82,7 @@ public class Jugador {
                         System.out.println("El caracter no es una vocal!\n");
                         repetirLoop = true;
                     }
-                    //TODO Pedro 11/01 Falta comprobar si la vocal que compró
-                    //el jugador es realmente correcta
+                    //TODO Pedro 11/01 Falta comprobar si la vocal que compró el jugador es realmente correcta
                 }
             } while (repetirLoop == true);
 
