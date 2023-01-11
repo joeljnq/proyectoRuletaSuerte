@@ -12,6 +12,7 @@ public class RuletaDeLaSuerte {
      */
     public static void main(String[] args) {
         
+        Jugador j1 = new Jugador("Juan", true);
         
         
         System.out.println("HOLA MUNDO!!");
