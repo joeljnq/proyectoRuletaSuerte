@@ -15,6 +15,7 @@ public class RuletaDeLaSuerte {
         
         
         System.out.println("HOLA MUNDO!!");
+        System.out.println("Esto es una prueba");
     }
 
 }
