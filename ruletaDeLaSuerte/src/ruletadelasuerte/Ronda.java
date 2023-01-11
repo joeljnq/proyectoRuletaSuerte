@@ -6,5 +6,9 @@ package ruletadelasuerte;
  */
 public class Ronda {
     
+    
+    public boolean finRonda(){
+        return true;
+    }
 
 }
