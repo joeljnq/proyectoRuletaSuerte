@@ -17,17 +17,18 @@ public class RuletaDeLaSuerte {
 
         Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
 
-        //APERTURA DE MENÚ
+        //APERTURA DE MENÚ PRINCIPAL
         System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
-        System.out.println("\n              MENU\n");
+        System.out.println("\n              MENU\n----------------------------------\n");
         System.out.println("1.Iniciar partida");
         System.out.println("2.Salir");
         System.out.println("3.Creditos(en mantenimiento)");
         int eleccionOpcionMenu = teclado.nextInt();
-        //CIERRE DE MENU 
+        //CIERRE DE MENU PRINCIPAL
+        
         //Menú de partida
         if (eleccionOpcionMenu == 1) {
-            System.out.println("\n              MENU\n");
+            System.out.println("\n              MENU\n----------------------------------\n");
             System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + j1.getNombre() + "\nDinero:" + j1.getDinero() + "\n");
             System.out.println("Que acción quieres llevar a cabo?\n");
             System.out.println("1.Tirar ruleta");
