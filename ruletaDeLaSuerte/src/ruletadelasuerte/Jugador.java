@@ -92,10 +92,12 @@ public class Jugador {
 
     }
 
-    public char decirConsonante() {
+    public  char decirConsonante() {
 
         char consonante = teclado.nextLine().charAt(0);
         return consonante;
+        
+        
     }
 
 }
