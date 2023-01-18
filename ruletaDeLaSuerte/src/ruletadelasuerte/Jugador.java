@@ -66,7 +66,7 @@ public class Jugador {
     public void comprarVocal() {
         boolean vocalComprada = false;//Esto por ahora no tiene función
         boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
-
+        
         if (dinero > 50) {
             do {//Este do while se repetirá hasta que selecciones una opción corecta
                 vocalComprada = true;//Esto por ahora no tiene función
