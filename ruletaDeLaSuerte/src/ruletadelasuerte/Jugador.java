@@ -92,14 +92,19 @@ public class Jugador {
 
     }
 
-  /*  public boolean decirConsonante() {
+   public boolean decirConsonante() {
         boolean decirConsonan = false; //Sirve como condicion para comprar consonante.
         if (decirConsonan) {
             char consonante = teclado.nextLine().charAt(0);
             //aqui deberia ser un bucle que compruebe el array con la cononsonante dicha.
+            for (int i = 0; ruletadelasuerte.Ruleta.frase().length() < 10; i++) {
+                if (consonante == ruletadelasuerte.Ruleta.frase().charAt(i)) {
+                    
+                }
+            }
         }
+        return true;
 
-    }*/
-
+}
 
 }

@@ -9,13 +9,11 @@ package ruletadelasuerte;
  * @author a19pedrocr
  */
 public class Ruleta {
-    
-    String [] frase = {"esto es una frase de prueba"};
- 
-    public static String frase(){
-       
+
+    public static String frase() {
         
-        
+        String frase1 = "esto es una frase de prueba";
+        return frase1;
     }
-    
+
 }
