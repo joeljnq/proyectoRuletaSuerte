@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author a18jaimejnq
  */
 public class Ronda {
-
+   private String frase = "esto es una frase de prueba";
     static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
     static Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
@@ -61,16 +61,20 @@ public class Ronda {
 
         // System.out.println("------------------------------------------------------------------------------------");
     }
-      public static void comprobarConsonante( Jugador decirConson){
-          
-          for (int i = 0; i < ruletadelasuerte.Ruleta.frase().length(); i++) {       
-              if (decirConson.equals(ruletadelasuerte.Ruleta.frase().charAt(i)) ){
-                  
-                  
-                  
-              }
-          }
- 
-          
-      }
+
+    public static void comprobarConsonante(Jugador decirConson) {
+
+        for (int i = 0; i < frase().length() ; i++) {
+            
+        }
+
+    }
+
+    public static String frase() {
+
+        String frase = "esto es una frase de prueba";
+
+        char[] abc = new char[frase.length()];
+        return frase;
+    }
 }
