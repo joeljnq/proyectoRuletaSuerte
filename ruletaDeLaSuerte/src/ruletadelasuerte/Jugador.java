@@ -66,7 +66,7 @@ public class Jugador {
     public void comprarVocal() {
         boolean vocalComprada = false;//Esto por ahora no tiene función
         boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
-        
+
         if (dinero > 50) {
             do {//Este do while se repetirá hasta que selecciones una opción corecta
                 vocalComprada = true;//Esto por ahora no tiene función
@@ -92,19 +92,10 @@ public class Jugador {
 
     }
 
-   public boolean decirConsonante() {
-        boolean decirConsonan = false; //Sirve como condicion para comprar consonante.
-        if (decirConsonan) {
-            char consonante = teclado.nextLine().charAt(0);
-            //aqui deberia ser un bucle que compruebe el array con la cononsonante dicha.
-            for (int i = 0; ruletadelasuerte.Ruleta.frase().length() < 10; i++) {
-                if (consonante == ruletadelasuerte.Ruleta.frase().charAt(i)) {
-                    
-                }
-            }
-        }
-        return true;
+    public char decirConsonante() {
 
-}
+        char consonante = teclado.nextLine().charAt(0);
+        return consonante;
+    }
 
 }

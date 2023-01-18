@@ -51,5 +51,19 @@ public class Ronda {
             System.out.println("Comprando vocal...");
             j1.comprarVocal();
         }
+        
+      
+        
+       // System.out.println("------------------------------------------------------------------------------------");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }
