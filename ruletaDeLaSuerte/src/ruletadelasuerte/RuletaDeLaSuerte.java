@@ -33,6 +33,7 @@ public class RuletaDeLaSuerte {
             System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + j1.getNombre() + "\nDinero:" + j1.getDinero() + "\n");
             System.out.println("Que acción quieres llevar a cabo?\n");
             System.out.println("1.Tirar ruleta");
+            
             System.out.println("2.Resolver panel");//TODO Pedro Crear método resolverPanel
             System.out.println("3.Comprar vocal");//TODO Pedro Esto debería enlazar con j1.comprarVocal
             System.out.println("4.Salir de la partida");

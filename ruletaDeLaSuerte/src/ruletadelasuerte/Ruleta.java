@@ -10,4 +10,12 @@ package ruletadelasuerte;
  */
 public class Ruleta {
     
+    String [] frase = {"esto es una frase de prueba"};
+ 
+    public static String frase(){
+       
+        
+        
+    }
+    
 }
