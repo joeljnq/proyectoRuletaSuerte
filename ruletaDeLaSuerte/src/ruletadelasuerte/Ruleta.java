@@ -10,10 +10,8 @@ package ruletadelasuerte;
  */
 public class Ruleta {
 
-    public static String frase() {
-        
-        String frase1 = "esto es una frase de prueba";
-        return frase1;
-    }
-
+    
+   
+    
+   
 }
