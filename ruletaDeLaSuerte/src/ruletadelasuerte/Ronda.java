@@ -61,4 +61,16 @@ public class Ronda {
 
         // System.out.println("------------------------------------------------------------------------------------");
     }
+      public static void comprobarConsonante( Jugador decirConson){
+          
+          for (int i = 0; i < ruletadelasuerte.Ruleta.frase().length(); i++) {       
+              if (decirConson.equals(ruletadelasuerte.Ruleta.frase().charAt(i)) ){
+                  
+                  
+                  
+              }
+          }
+ 
+          
+      }
 }
