@@ -63,15 +63,16 @@ public class Jugador {
      * Esta función compra una vocal al ser llamada y se cumplen con el
      * requerimiento de tener 50 dineros
      */
-    public void comprarVocal() {
+    public char comprarVocal() {
         boolean vocalComprada = false;//Esto por ahora no tiene función
         boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
+        char vocalElegida=' ';
+        if (dinero >= 50) {
 
-        if (dinero > 50) {
             do {//Este do while se repetirá hasta que selecciones una opción corecta
                 vocalComprada = true;//Esto por ahora no tiene función
                 System.out.println("Que vocal quieres comprar?");
-                char vocalElegida = teclado.nextLine().charAt(0); //Vocal comprada por el usuario
+                vocalElegida = teclado.nextLine().charAt(0); //Vocal comprada por el usuario
                 switch (vocalElegida) {//Comprueba si es una vocal lo que hemos indroducido
                     case 'a','e','i','o','u' -> {
                         System.out.println("La vocal elegida es " + vocalElegida);
@@ -80,7 +81,7 @@ public class Jugador {
                     }
                     default -> {
                         System.out.println("El caracter no es una vocal!\n");
-                        repetirLoop = true;
+                        
                     }
                     //TODO Pedro 11/01 Falta comprobar si la vocal que compró el jugador es realmente correcta
                 }
@@ -89,15 +90,15 @@ public class Jugador {
         } else {
             System.out.println("Dinero insuficiente para comprar vocal");
         }
+        return vocalElegida;
 
     }
 
-    public  char decirConsonante() {
+    public char decirConsonante() {
 
         char consonante = teclado.nextLine().charAt(0);
         return consonante;
-        
-        
+
     }
 
 }

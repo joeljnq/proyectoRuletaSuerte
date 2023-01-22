@@ -13,11 +13,16 @@ public class RuletaDeLaSuerte {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         Scanner teclado = new Scanner(System.in, "ISO-8859-1");
         int limitRonda = 2; //El limite de rondas de una partida
-        
-        Ronda.menu();
 
+        Ronda.menuPrincipal();
+        
+       
+
+
+       
     }
 
 }
