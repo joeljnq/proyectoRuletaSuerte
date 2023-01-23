@@ -11,7 +11,7 @@ public class Ronda {
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
 
-    static int rondaActual = 1;
+    public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
     static Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
     static int eleccionOpcionMenu;
@@ -57,11 +57,12 @@ public class Ronda {
                 }
                 case 3 -> {
                     System.out.println("\n\nComprando vocal...");
-                    System.out.println(comprobarVocal());
+                    System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
                     menuPartida();  
                 }
                 case 4 -> {
-
+                    System.out.println("Saliendo de la partida... \n\n\n\n");
+                    menuPrincipal();
                 }
                 default ->
                     System.out.println("Elige un valor valido");
@@ -71,8 +72,7 @@ public class Ronda {
         // System.out.println("------------------------------------------------------------------------------------");
     }
 
-    /* Despues de estar media hora creando el panel, me he dado cuenta de que tienes este código que 
-    supongo es para crear consonante, te lo dejo comentado por si acaso para q no me de errores jeje :)
+   
     
     public static void comprobarConsonante(Jugador decirConson) {
         char[] abc = new char[frase.length()];
@@ -81,12 +81,16 @@ public class Ronda {
         }
 
     }
-
+/* Creo que con los cambios que estuve haciendo este metodo ya no es necesario, pero lo dejo comentado
+    por si acaso le tienes cariñito o algo :)
+    
     public static String frase() {
         String frase = "esto es una frase de prueba";
         return frase;
     }
      */
+    
+    
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -124,7 +128,8 @@ public class Ronda {
     /*Segun mi logica (Y lo apunto para que no se me olvide) deberia haber un array
     panel, y la frase completa en la variable frase. El array está lleno de "_" salvo los espacios,
     así para enseñar si una vocal/consonante está dentro del panel, solo habría que bucar en "frase"
-    la posicion del caracter donde se encontró y que sobre escriba el "_" que hay en la misma posición en el array vacio.
+    la posicion del caracter donde se encontró y que sobre escriba el "_" que hay en la misma posición en el array
+    con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
 }
