@@ -10,6 +10,7 @@ public class Ronda {
 
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
+    static boolean panelcreado = false;
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
@@ -22,6 +23,7 @@ public class Ronda {
 
     static public void menuPrincipal() {
         //APERTURA DE MENÚ PRINCIPAL
+
         System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
         System.out.println("\n              MENU\n----------------------------------\n");
         System.out.println("1.Iniciar partida");
@@ -36,7 +38,11 @@ public class Ronda {
 
     static public void menuPartida() {
         //Menú de partida
-        GeneradorPanelUsuario();
+
+        if (!panelcreado) {
+            GeneradorPanelUsuario();
+            panelcreado = true;
+        }
 
         do {
             System.out.println("\n              MENU\n----------------------------------\n");
@@ -53,12 +59,15 @@ public class Ronda {
                     //EJECUTAR EL METODO TIRAR RULETA
                 }
                 case 2 -> {
-                    //EJECUTAR METODO RESOLVER PANEL
+                    System.out.println("Tienes el siguiente panel resuelto");
+                    mostrarPanel();
+                    System.out.println("Que frase piensas que es?");
+                    resolverPanel();
                 }
                 case 3 -> {
                     System.out.println("\n\nComprando vocal...");
                     System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
-                    menuPartida();  
+                    menuPartida();
                 }
                 case 4 -> {
                     System.out.println("Saliendo de la partida... \n\n\n\n");
@@ -69,11 +78,8 @@ public class Ronda {
             }
         } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
 
-        // System.out.println("------------------------------------------------------------------------------------");
     }
 
-   
-    
     public static void comprobarConsonante(Jugador decirConson) {
         char[] abc = new char[frase.length()];
         for (int i = 0; i < frase.length(); i++) {
@@ -81,16 +87,16 @@ public class Ronda {
         }
 
     }
-/* Creo que con los cambios que estuve haciendo este metodo ya no es necesario, pero lo dejo comentado
-    por si acaso le tienes cariñito o algo :)
+
+    /* Creo que con los cambios que estuve haciendo este metodo ya no es necesario, pero lo dejo comentado
+    por si acaso le tienes cariñito o algo Joel :)
     
     public static String frase() {
         String frase = "esto es una frase de prueba";
         return frase;
     }
      */
-    
-    
+
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -123,6 +129,27 @@ public class Ronda {
         }
         return panelUsuario;
 
+    }
+
+    /**
+     * Este solo sirve para ver el panel en cada momento y hacer debug
+     */
+    public static void mostrarPanel() {
+        System.out.println(panelUsuario);
+    }
+
+    public static boolean resolverPanel() {
+        String usuarioResuelvePanel = teclado.next();
+        boolean panelResuelto = false;
+
+        if (frase.equals(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
+            panelResuelto = true;
+            System.out.println("HAS RESUELTO EL PANEL");
+        } else {
+            System.out.println("ERRASTE WEON");
+        }
+
+        return panelResuelto;
     }
 
     /*Segun mi logica (Y lo apunto para que no se me olvide) deberia haber un array
