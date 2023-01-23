@@ -58,7 +58,7 @@ public class Ronda {
                 case 3 -> {
                     System.out.println("\n\nComprando vocal...");
                     System.out.println(comprobarVocal());
-                    menuPartida();  //Por alguna razon esto se ejecuta pero de manera anomala, no tengo tiempo ahora para seguirlo
+                    menuPartida();  
                 }
                 case 4 -> {
 
