@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Jugador {
 
     Scanner teclado = new Scanner(System.in, "ISO-8859-1");
-    private int comodin = 0; // indica el numero de comodines
+    private static int comodin = 0; // indica el numero de comodines
     private int dinero = 100;//Inicializado a 100 para hacer pruebas
     private String nombre;
     private boolean turno; // true el juegador puede jugar o false el jugador no puede jugar
@@ -95,11 +95,16 @@ public class Jugador {
     }
 
     public char decirConsonante() {
-
         char consonante = teclado.nextLine().charAt(0);
         return consonante;
 
     }
 
-    //para no olvidarme en caso de que el jugador pierda turno se puede dar una metodo que permita utilizar el comodin para que no pierda, en caso de que quede en quiebra...el comodin solo se puede usar para no perder turno.
+  
+//para no olvidarme en caso de que el jugador pierda turno se puede dar una metodo que permita utilizar el comodin para que no pierda, en caso de que quede en quiebra...el comodin solo se puede usar para no perder turno.
+
+
+
 }
+
+

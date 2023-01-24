@@ -161,16 +161,23 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
+    /**
+     * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
+     * que sera un posición de la string rule.
+     *
+     * @return
+     */
     public static String girarRuleta() {
         j1.setTurno(true);
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(6); //genera un numero random de 0-8excluido pero con el +1 se incluye
+        int aleatorio = rnd.nextInt(7); //genera un numero random 
         switch (rule[aleatorio]) {
             case 1 -> {
                 j1.setDinero(0);
                 toret = "quiebra";
+                   Ronda.usarComodin();
             }
             case 2 -> {
                 j1.setComodin(j1.getComodin() + 1);
@@ -204,6 +211,26 @@ public class Ronda {
         }
 
         return toret;
+    }
+
+    /**
+     * Usar comoodin en caso de que caigas en quiebra o en pierde turno...
+     *
+     * @return
+     */
+    public static String usarComodin() {
+        teclado.nextLine();
+        if (j1.getComodin() > 0) {
+            System.out.println("tienes " + j1.getComodin() + " comodines" + "quieres usarlos?");
+            System.out.println("Responde con SI o NO");
+            String pregunta = teclado.nextLine();
+            if (pregunta.equalsIgnoreCase("si")) {
+                j1.setTurno(true);
+            } else {
+                j1.setTurno(false);
+            }
+        }
+        return "";
     }
 
 }
