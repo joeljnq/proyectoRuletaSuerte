@@ -8,6 +8,20 @@ import java.util.Scanner;
  * @author a18jaimejnq
  */
 public class Ronda {
+    /*
+                TODO LIST MÍNIMOS
+            -Poner la posibilidad varios jugadores
+            -Resetear el dinero de cada jugador cada vez que se ejecuta menuPartida()
+            -Aplicar el comprobar consonante tras tirar ruleta(?) 
+            -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
+            -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda
+            -
+                TODO EXTRAS
+            -Reorganizar ruleta(Igual su existencia es innecesaria?)
+            -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
+            -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
+            -
+    */
 
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
@@ -39,7 +53,8 @@ public class Ronda {
 
     static public void menuPartida() {
         //Menú de partida
-
+          
+        
         if (!panelcreado) {
             GeneradorPanelUsuario();
             panelcreado = true;
@@ -53,7 +68,12 @@ public class Ronda {
             System.out.println("2.Resolver panel");//TODO Pedro Crear método resolverPanel
             System.out.println("3.Comprar vocal");
             System.out.println("4.Salir de la partida");
+            System.out.println("\n \t PANEL ACTUAL: " );
+            System.out.print("\t");
+            mostrarPanel();
+            System.out.println("");
 
+            
             eleccionOpcionMenu = teclado.nextInt();
             switch (eleccionOpcionMenu) {
                 case 1 -> {
@@ -137,7 +157,7 @@ public class Ronda {
      * Este solo sirve para ver el panel en cada momento y hacer debug
      */
     public static void mostrarPanel() {
-        System.out.println(panelUsuario);
+        System.out.print(panelUsuario);
     }
 
     public static boolean resolverPanel() {
@@ -161,6 +181,7 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
+    
     /**
      * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
      * que sera un posición de la string rule.
@@ -205,7 +226,7 @@ public class Ronda {
             }
             case 200 -> {
                 j1.setDinero(j1.getDinero() + 200);
-                toret = "200 PESOS VENEZOLANOS";
+                toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
             }
 
         }

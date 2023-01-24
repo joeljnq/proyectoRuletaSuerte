@@ -64,13 +64,12 @@ public class Jugador {
      * requerimiento de tener 50 dineros
      */
     public char comprarVocal() {
-        boolean vocalComprada = false;//Esto por ahora no tiene función
+        
         boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
         char vocalElegida=' ';
         if (dinero >= 50) {
 
             do {//Este do while se repetirá hasta que selecciones una opción corecta
-                vocalComprada = true;//Esto por ahora no tiene función
                 System.out.println("Que vocal quieres comprar?");
                 vocalElegida = teclado.nextLine().charAt(0); //Vocal comprada por el usuario
                 switch (vocalElegida) {//Comprueba si es una vocal lo que hemos indroducido
