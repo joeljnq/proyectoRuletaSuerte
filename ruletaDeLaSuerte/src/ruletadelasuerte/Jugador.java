@@ -101,4 +101,5 @@ public class Jugador {
 
     }
 
+    //para no olvidarme en caso de que el jugador pierda turno se puede dar una metodo que permita utilizar el comodin para que no pierda, en caso de que quede en quiebra...el comodin solo se puede usar para no perder turno.
 }
