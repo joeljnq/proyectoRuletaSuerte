@@ -58,7 +58,8 @@ public class Ronda {
             switch (eleccionOpcionMenu) {
                 case 1 -> {
                     //EJECUTAR EL METODO TIRAR RULETA
-                    System.out.println(Ronda.girarRuleta());  
+                    System.out.println(Ronda.girarRuleta());
+                    menuPartida();
                 }
                 case 2 -> {
                     System.out.println("Tienes el siguiente panel resuelto");
@@ -98,7 +99,6 @@ public class Ronda {
         return frase;
     }
      */
-
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -161,50 +161,49 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
-    
-    public static String girarRuleta(){
+    public static String girarRuleta() {
         j1.setTurno(true);
-       int[]rule = Ruleta.rule();
-       String toret="";
+        int[] rule = Ruleta.rule();
+        String toret = "";
         Random rnd = new Random();
         int aleatorio = rnd.nextInt(6); //genera un numero random de 0-8excluido pero con el +1 se incluye
-        switch(rule[aleatorio]){
+        switch (rule[aleatorio]) {
             case 1 -> {
                 j1.setDinero(0);
                 toret = "quiebra";
             }
-            case 2 ->{
-                j1.setComodin(j1.getComodin()+1);
-                toret="comodin";
+            case 2 -> {
+                j1.setComodin(j1.getComodin() + 1);
+                toret = "comodin";
             }
-            case 3 ->{
-                j1.setTurno(false);
-                toret= "pierde Turno";
+            //     case 3 ->{           
+            //       j1.setTurno(false);        Por ahora esta opcion queda deshabilitada.
+            //     toret= "pierde Turno";
+            //  }
+            case 10 -> {
+                j1.setDinero(j1.getDinero() + 10);
+                toret = "10 PESOS VENEZOLANOS";
             }
-            case 10 ->{
-                j1.setDinero(j1.getDinero()+ 10);
-                toret= "10 PESOS VENEZOLANOS";
+            case 20 -> {
+                j1.setDinero(j1.getDinero() + 20);
+                toret = "20 PESOS VENEZOLANOS";
             }
-            case 20 ->{
-               j1.setDinero(j1.getDinero()+ 20);
-                toret= "20 PESOS VENEZOLANOS";
+            case 50 -> {
+                j1.setDinero(j1.getDinero() + 50);
+                toret = "50 PESOS VENEZOLANOS";
             }
-            case 50 ->{
-               j1.setDinero(j1.getDinero()+ 50);
-                toret= "50 PESOS VENEZOLANOS";  
+            case 100 -> {
+                j1.setDinero(j1.getDinero() + 100);
+                toret = "100 PESOS VENEZOLANOS";
             }
-            case 100 ->{
-                 j1.setDinero(j1.getDinero()+ 100);
-                toret= "100 PESOS VENEZOLANOS";
+            case 200 -> {
+                j1.setDinero(j1.getDinero() + 200);
+                toret = "200 PESOS VENEZOLANOS";
             }
-            case 200->{
-                 j1.setDinero(j1.getDinero()+ 200);
-                toret= "200 PESOS VENEZOLANOS";
-            }
-                
+
         }
- 
-     return toret;
+
+        return toret;
     }
-    
+
 }
