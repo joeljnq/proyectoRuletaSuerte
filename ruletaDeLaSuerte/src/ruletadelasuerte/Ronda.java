@@ -9,9 +9,10 @@ import java.util.Scanner;
  */
 public class Ronda {
 
+
     /*
                 TODO LIST MÍNIMOS
-            -Poner la posibilidad varios jugadores
+            -Poner la posibilidad 2 jugadores
             -Resetear el dinero de cada jugador cada vez que se ejecuta menuPartida()
             -Aplicar el comprobar consonante tras tirar ruleta(?) 
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
@@ -22,13 +23,10 @@ public class Ronda {
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
             -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
             -Revisar las variables qu eestán en static 
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
-            -Esto es un comentario de prueba!!
+            -Añadir la posibilidad de poner cantidad y nombre a los jugadores de la partida
+            -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
+            -Hacer array de consonantes comprobarConsonante en la clase jugador
+ 
      */
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
@@ -115,14 +113,6 @@ public class Ronda {
 
     }
 
-    public static void comprobarConsonante(Jugador decirConson) {
-        char[] abc = new char[frase.length()];
-        for (int i = 0; i < frase.length(); i++) {
-
-        }
-
-    }
-
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -185,6 +175,37 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
+    public static char[] comprobarConsonante() { //Le quedan muchas cosas
+        
+        
+       char vocalElegidaPorUsuario = j1.comprarVocal();
+
+        for (int i = 0; i < frase.length(); i++) {
+            if (frase.charAt(i) == vocalElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
+                panelUsuario[i] = vocalElegidaPorUsuario;
+            }
+        }
+        return vocalElegidaPorUsuario;
+    }
+
+    public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
+        System.out.println("Hola1");
+
+        System.out.println("Despues de comprobar consonante");
+
+        System.out.println("Elige ");
+        System.out.println("\n              MENU\n----------------------------------\n");
+        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + j1.getNombre() + "\nDinero:" + j1.getDinero() + "\n");
+        System.out.println("Que acción quieres llevar a cabo?\n");
+        System.out.println("1.Resolver panel");
+        System.out.println("3.Comprar vocal");
+        System.out.println("4.Salir de la partida");
+        System.out.println("\n \t PANEL ACTUAL: ");
+        System.out.print("\t");
+        mostrarPanel();
+        System.out.println("");
+    }
+
     /**
      * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
      * que sera un posición de la string rule.

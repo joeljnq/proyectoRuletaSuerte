@@ -64,9 +64,9 @@ public class Jugador {
      * requerimiento de tener 50 dineros
      */
     public char comprarVocal() {
-        
+
         boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
-        char vocalElegida=' ';
+        char vocalElegida = ' ';
         if (dinero >= 50) {
 
             do {//Este do while se repetirá hasta que selecciones una opción corecta
@@ -80,7 +80,7 @@ public class Jugador {
                     }
                     default -> {
                         System.out.println("El caracter no es una vocal!\n");
-                        
+
                     }
                     //TODO Pedro 11/01 Falta comprobar si la vocal que compró el jugador es realmente correcta
                 }
@@ -94,16 +94,23 @@ public class Jugador {
     }
 
     public char decirConsonante() {
-        char consonante = teclado.nextLine().charAt(0);
-        return consonante;
+        boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
+        char consonanteElegida;
+        do {
+            System.out.println("Que consonante quieres elegir?");
+            consonanteElegida = teclado.nextLine().charAt(0);
+            switch (consonanteElegida) {
+                case 'b','c','d','f','g','h','j','k','l','m','n','ñ','p','q','r','s','t','v','w','x','y','z':
+                    
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        } while (repetirLoop == true);
+
+        return consonanteElegida;
 
     }
 
-  
 //para no olvidarme en caso de que el jugador pierda turno se puede dar una metodo que permita utilizar el comodin para que no pierda, en caso de que quede en quiebra...el comodin solo se puede usar para no perder turno.
-
-
-
 }
-
-

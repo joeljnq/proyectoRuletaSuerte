@@ -20,7 +20,9 @@ public class RuletaDeLaSuerte {
         
         
         
-       
+       //turnoJugador=0; //cada vez que pierde turno se incrementa en uno,(contando con q el juego tiene 
+            //3 jugafores, cuando llega a el turno 3, se vuelve automaticamente 0
+        // Jugador[turnoJugador]
 
 
      
