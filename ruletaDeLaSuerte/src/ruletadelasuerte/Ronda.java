@@ -30,6 +30,8 @@ public class Ronda {
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
     static Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
+    static Jugador j2 = new Jugador("Pepe", false);
+    static Jugador j3 = new Jugador ("toni", false);
     static int eleccionOpcionMenu;
 
     public boolean finRonda() {
