@@ -21,6 +21,13 @@ public class Ronda {
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
             -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
             -Revisar las variables qu eestán en static 
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
+            -Esto es un comentario de prueba!!
     */
 
     public static String frase = "esto es una prueba";
