@@ -320,6 +320,7 @@ public class Ronda {
             if (jugadores[i].isTurno()) {
                 Ronda.menuPartida(jugadores[i].getNombre(), jugadores[i].getDinero());
                 Ronda.girarRuleta();
+                
             }
 
         }
