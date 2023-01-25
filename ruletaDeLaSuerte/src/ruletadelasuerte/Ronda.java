@@ -13,8 +13,8 @@ public class Ronda {
     /*
                 TODO LIST MÍNIMOS
             -Poner la posibilidad 2 jugadores
-            -Resetear el dinero de cada jugador cada vez que se ejecuta menuPartida()
-            -Aplicar el comprobar consonante tras tirar ruleta(?) 
+            -Resetear TODO cada vez que se ejecuta menuPartida()
+            -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
             -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda
             -
@@ -26,6 +26,7 @@ public class Ronda {
             -Añadir la posibilidad de poner cantidad y nombre a los jugadores de la partida
             -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
             -Hacer array de consonantes comprobarConsonante en la clase jugador
+            -
  
      */
     
@@ -90,6 +91,7 @@ public class Ronda {
                     //EJECUTAR EL METODO TIRAR RULETA
                     System.out.println(Ronda.girarRuleta());
                     //  menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
+                    menuTrasGirarRuleta();
                 }
                 case 2 -> {
                     System.out.println("Tienes el siguiente panel resuelto");
@@ -120,6 +122,7 @@ public class Ronda {
      */
     public static char[] GeneradorPanelUsuario() {//Se debe ejecutar una sola vez para generarlo
         for (int i = 0; i < frase.length(); i++) {
+            
             if (Character.isWhitespace(frase.charAt(i))) {
                 panelUsuario[i] = ' ';
             } else {
@@ -175,21 +178,20 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
-    public static char comprobarConsonante() { //Le quedan muchas cosas
-
-        char vocalElegidaPorUsuario = j1.comprarVocal();
+    public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
+        char consonanteElegidaPorUsuario = j1.decirConsonante();
 
         for (int i = 0; i < frase.length(); i++) {
-            if (frase.charAt(i) == vocalElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
-                panelUsuario[i] = vocalElegidaPorUsuario;
+            if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
+                panelUsuario[i] = consonanteElegidaPorUsuario;
             }
         }
-        return vocalElegidaPorUsuario;
+        return consonanteElegidaPorUsuario;
     }
 
     public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
-        System.out.println("Hola1");
 
+        comprobarConsonante();
         System.out.println("Despues de comprobar consonante");
 
         System.out.println("Elige ");
@@ -197,12 +199,33 @@ public class Ronda {
         System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + j1.getNombre() + "\nDinero:" + j1.getDinero() + "\n");
         System.out.println("Que acción quieres llevar a cabo?\n");
         System.out.println("1.Resolver panel");
-        System.out.println("3.Comprar vocal");
-        System.out.println("4.Salir de la partida");
+        System.out.println("2.Comprar vocal");
+        System.out.println("3.Salir de la partida");
         System.out.println("\n \t PANEL ACTUAL: ");
         System.out.print("\t");
         mostrarPanel();
         System.out.println("");
+
+        eleccionOpcionMenu = teclado.nextInt();
+        switch (eleccionOpcionMenu) {
+            case 1 -> {
+                System.out.println("Tienes el siguiente panel resuelto");
+                mostrarPanel();
+                System.out.println("Que frase piensas que es?");
+                resolverPanel();
+            }
+            case 2 -> {
+                System.out.println("\n\nComprando vocal...");
+                System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
+                menuPartida(jugadores[i].getNombre(), jugadores[i].getDinero());
+            }
+            case 3 -> {
+                System.out.println("Saliendo de la partida... \n\n\n\n");
+                menuPrincipal();
+            }
+            default ->
+                System.out.println("Elige un valor valido");
+        }
     }
 
     /**
@@ -314,7 +337,7 @@ public class Ronda {
         return "";
     }
 
-    public static void jugadores() {
+    public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
         
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i].isTurno()) {
