@@ -8,6 +8,7 @@ import java.util.Scanner;
  * @author a18jaimejnq
  */
 public class Ronda {
+
     /*
                 TODO LIST MÍNIMOS
             -Poner la posibilidad varios jugadores
@@ -28,19 +29,22 @@ public class Ronda {
             -Esto es un comentario de prueba!!
             -Esto es un comentario de prueba!!
             -Esto es un comentario de prueba!!
-    */
-
+     */
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
+    
+    static Jugador[] jugadores = {new Jugador("pedro", true),new Jugador("joel", false)};
+    
     static Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
     static Jugador j2 = new Jugador("Pepe", false);
-    static Jugador j3 = new Jugador ("toni", false);
+    static Jugador j3 = new Jugador("toni", false);
     static int eleccionOpcionMenu;
-
+//for 
+    
     public boolean finRonda() {
         return true;
     }
@@ -60,10 +64,10 @@ public class Ronda {
         }
     }
 
+    
     static public void menuPartida() {
         //Menú de partida
-          
-        
+
         if (!panelcreado) {
             GeneradorPanelUsuario();
             panelcreado = true;
@@ -77,12 +81,11 @@ public class Ronda {
             System.out.println("2.Resolver panel");//TODO Pedro Crear método resolverPanel
             System.out.println("3.Comprar vocal");
             System.out.println("4.Salir de la partida");
-            System.out.println("\n \t PANEL ACTUAL: " );
+            System.out.println("\n \t PANEL ACTUAL: ");
             System.out.print("\t");
             mostrarPanel();
             System.out.println("");
 
-            
             eleccionOpcionMenu = teclado.nextInt();
             switch (eleccionOpcionMenu) {
                 case 1 -> {
@@ -182,7 +185,6 @@ public class Ronda {
     con la letra que le corresponda.
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
-    
     /**
      * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
      * que sera un posición de la string rule.
@@ -195,41 +197,82 @@ public class Ronda {
         String toret = "";
         Random rnd = new Random();
         int aleatorio = rnd.nextInt(7); //genera un numero random 
-        switch (rule[aleatorio]) {
-            case 1 -> {
-                j1.setDinero(0);
-                toret = "quiebra";
-                   Ronda.usarComodin();
-            }
-            case 2 -> {
-                j1.setComodin(j1.getComodin() + 1);
-                toret = "comodin";
-            }
-            //     case 3 ->{           
-            //       j1.setTurno(false);        Por ahora esta opcion queda deshabilitada.
-            //     toret= "pierde Turno";
-            //  }
-            case 10 -> {
-                j1.setDinero(j1.getDinero() + 10);
-                toret = "10 PESOS VENEZOLANOS";
-            }
-            case 20 -> {
-                j1.setDinero(j1.getDinero() + 20);
-                toret = "20 PESOS VENEZOLANOS";
-            }
-            case 50 -> {
-                j1.setDinero(j1.getDinero() + 50);
-                toret = "50 PESOS VENEZOLANOS";
-            }
-            case 100 -> {
-                j1.setDinero(j1.getDinero() + 100);
-                toret = "100 PESOS VENEZOLANOS";
-            }
-            case 200 -> {
-                j1.setDinero(j1.getDinero() + 200);
-                toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
-            }
+        if (j1.isTurno()) {
 
+            switch (rule[aleatorio]) {
+                case 1 -> {
+                    j1.setDinero(0);
+                    toret = "quiebra";
+                    Ronda.usarComodin();
+                }
+                case 2 -> {
+                    j1.setComodin(j1.getComodin() + 1);
+                    toret = "comodin";
+                }
+                case 3 -> {
+                    j1.setTurno(false);
+                    toret = "pierde Turno";
+                }
+                case 10 -> {
+                    j1.setDinero(j1.getDinero() + 10);
+                    toret = "10 PESOS VENEZOLANOS";
+                }
+                case 20 -> {
+                    j1.setDinero(j1.getDinero() + 20);
+                    toret = "20 PESOS VENEZOLANOS";
+                }
+                case 50 -> {
+                    j1.setDinero(j1.getDinero() + 50);
+                    toret = "50 PESOS VENEZOLANOS";
+                }
+                case 100 -> {
+                    j1.setDinero(j1.getDinero() + 100);
+                    toret = "100 PESOS VENEZOLANOS";
+                }
+                case 200 -> {
+                    j1.setDinero(j1.getDinero() + 200);
+                    toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
+                }
+
+            }
+        }
+        if (j2.isTurno()) {
+            switch (rule[aleatorio]) {
+                case 1 -> {
+                    j2.setDinero(0);
+                    toret = "quiebra";
+                    Ronda.usarComodin();
+                }
+                case 2 -> {
+                    j2.setComodin(j2.getComodin() + 1);
+                    toret = "comodin";
+                }
+                case 3 -> {
+                    j2.setTurno(false);
+                    toret = "pierde Turno";
+                }
+                case 10 -> {
+                    j2.setDinero(j2.getDinero() + 10);
+                    toret = "10 PESOS VENEZOLANOS";
+                }
+                case 20 -> {
+                    j2.setDinero(j2.getDinero() + 20);
+                    toret = "20 PESOS VENEZOLANOS";
+                }
+                case 50 -> {
+                    j2.setDinero(j2.getDinero() + 50);
+                    toret = "50 PESOS VENEZOLANOS";
+                }
+                case 100 -> {
+                    j2.setDinero(j2.getDinero() + 100);
+                    toret = "100 PESOS VENEZOLANOS";
+                }
+                case 200 -> {
+                    j2.setDinero(j2.getDinero() + 200);
+                    toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
+                }
+
+            }
         }
 
         return toret;
@@ -254,6 +297,17 @@ public class Ronda {
         }
         return "";
     }
+    
+    public static void j1(){
+        for (int i = 0; i < jugadores.length; i++) {
+            if (jugadores[i].isTurno()) {
+                Ronda.menuPrincipal();
+            }
+            
+        }
+        
+    }
+
 //hola edelegado que putas haces
     // ns a que queires llegar
     //pero ya esta?

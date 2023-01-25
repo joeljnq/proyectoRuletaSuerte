@@ -23,7 +23,16 @@ public class RuletaDeLaSuerte {
        
 
 
-       
+     
+        
+        
+        
+        
+        
+        
+        
+        //BORRAR J1.GET.NOME DEL MENÚ PRINCIPAL Y REMPLAZARLO PARA PEDIR UNA STRING AL INICIALIZAR EL METODO PARA QUE PUEDA SER USADO PARA CADA JGUADOR.
+        //
     }
 
 }
