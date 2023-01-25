@@ -20,7 +20,7 @@ public class Ronda {
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
             -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
-            -
+            -Revisar las variables qu eestán en static 
     */
 
     public static String frase = "esto es una prueba";
@@ -113,14 +113,6 @@ public class Ronda {
 
     }
 
-    /* Creo que con los cambios que estuve haciendo este metodo ya no es necesario, pero lo dejo comentado
-    por si acaso le tienes cariñito o algo Joel :)
-    
-    public static String frase() {
-        String frase = "esto es una frase de prueba";
-        return frase;
-    }
-     */
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
