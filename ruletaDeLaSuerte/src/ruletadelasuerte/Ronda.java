@@ -247,5 +247,17 @@ public class Ronda {
         }
         return "";
     }
-
+//hola edelegado que putas haces
+    // ns a que queires llegar
+    //pero ya esta?
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
 }
