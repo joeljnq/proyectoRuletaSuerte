@@ -65,12 +65,12 @@ public class Jugador {
      */
     public char comprarVocal() {
 
-        boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
+        boolean repetirLoop = true; //Sirve para poder repetir el bucle en caso de ser necesario
         char vocalElegida = ' ';
         if (dinero >= 50) {
 
             do {//Este do while se repetirá hasta que selecciones una opción corecta
-                System.out.println("Que vocal quieres comprar?");
+                System.out.println("\nQue vocal quieres comprar?");
                 vocalElegida = teclado.nextLine().charAt(0); //Vocal comprada por el usuario
                 switch (vocalElegida) {//Comprueba si es una vocal lo que hemos indroducido
                     case 'a','e','i','o','u' -> {
@@ -82,7 +82,7 @@ public class Jugador {
                         System.out.println("El caracter no es una vocal!\n");
 
                     }
-                    //TODO Pedro 11/01 Falta comprobar si la vocal que compró el jugador es realmente correcta
+                    
                 }
             } while (repetirLoop == true);
 
@@ -94,17 +94,18 @@ public class Jugador {
     }
 
     public char decirConsonante() {
-        boolean repetirLoop = false; //Sirve para poder repetir el bucle en caso de ser necesario
+        boolean repetirLoop = true; //Sirve para poder repetir el bucle en caso de ser necesario
         char consonanteElegida;
         do {
             System.out.println("Que consonante quieres elegir?");
             consonanteElegida = teclado.nextLine().charAt(0);
             switch (consonanteElegida) {
                 case 'b','c','d','f','g','h','j','k','l','m','n','ñ','p','q','r','s','t','v','w','x','y','z':
-                    
+                    System.out.println("La consonante elegida es " + consonanteElegida);
+                    repetirLoop=false;
                     break;
-                default:
-                    throw new AssertionError();
+                default:System.out.println("El valor no es una consonante (tiene que ser minúscula)");
+                    
             }
         } while (repetirLoop == true);
 
