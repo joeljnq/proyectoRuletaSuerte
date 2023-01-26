@@ -94,7 +94,7 @@ public class Ronda {
                     //EJECUTAR EL METODO TIRAR RULETA
                     System.out.println(Ronda.girarRuleta());
                     //  menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
-                    menuTrasGirarRuleta();
+                    
                 }
                 case 2 -> {
                     System.out.println("Tienes el siguiente panel resuelto");
@@ -240,17 +240,19 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(4); //genera un numero random 
+        int aleatorio = rnd.nextInt(7); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
                 jugadores[turno].setDinero(0); //esto esta bonito :)
                 toret = "quiebra";
                 Ronda.usarComodin();
+                //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
             }
             case 2 -> {
                 jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                 toret = "comodin";
+                menuTrasGirarRuleta();
             }
             case 3 -> {
                 finTurno();
@@ -259,22 +261,27 @@ public class Ronda {
             case 10 -> {
                 jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
                 toret = "10 PESOS VENEZOLANOS";
+                menuTrasGirarRuleta();
             }
             case 20 -> {
                 jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
                 toret = "20 PESOS VENEZOLANOS";
+                menuTrasGirarRuleta();
             }
             case 50 -> {
                 jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
                 toret = "50 PESOS VENEZOLANOS";
+                menuTrasGirarRuleta();
             }
             case 100 -> {
                 jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
                 toret = "100 PESOS VENEZOLANOS";
+                menuTrasGirarRuleta();
             }
             case 200 -> {
                 jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
-                toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
+                toret = "200 PESOS VENEZOLANOS";
+                menuTrasGirarRuleta();
             }
 
         }
