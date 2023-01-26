@@ -12,7 +12,7 @@ public class Ronda {
 
     /*
                 TODO LIST MÍNIMOS
-            -Poner la posibilidad 2 jugadores
+            -Hay que reparar el método Ronda.usarComodin() !!
             -Resetear TODO cada vez que se ejecuta menuPartida().
             -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro.
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
@@ -29,27 +29,26 @@ public class Ronda {
             -
  
      */
-    
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
-    
-    static int turno=0;
-    
+
+    static int turno = 0;
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
 
     static Jugador[] jugadores = {new Jugador("pedro"), new Jugador("joel")};
 
-
     static int eleccionOpcionMenu;
 
-
     static public void finTurno() {
-        if (turno>jugadores.length) {
-            turno=0;
-        }else turno++;
+        if (turno > jugadores.length) {
+            turno = 0;
+        } else {
+            turno++;
+        }
+
     }
 
     static public void menuPrincipal() {
@@ -93,8 +92,9 @@ public class Ronda {
                 case 1 -> {
                     //EJECUTAR EL METODO TIRAR RULETA
                     System.out.println(Ronda.girarRuleta());
+                    menuTrasGirarRuleta(); //Poner un if para que no se haga en caso de 
+
                     //  menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
-                    
                 }
                 case 2 -> {
                     System.out.println("Tienes el siguiente panel resuelto");
@@ -117,7 +117,107 @@ public class Ronda {
         } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
 
     }
+    
+    /**
+     * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio que sera un posición de la string rule.
+     *
+     * @return 
+     */
+    public static String girarRuleta() {
+        int[] rule = Ruleta.rule();
+        String toret = "";
+        Random rnd = new Random();
+        static boolean cancelarMenu=false; //Esta variable es usada para cancelar la aparición del menu tras la ruleta en caso de que sea necesario (tra perder turno por ejemplo)
+    static int aleatorio = rnd.nextInt(7); //genera un numero random 
 
+    switch (rule[aleatorio]) {
+        case 1 -> {
+            jugadores[turno].setDinero(0); 
+            toret = "quiebra";
+            Ronda.usarComodin();//Hay que reparar ese metodo!!
+            
+            //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
+            /*if (comodinUsado==true) {
+                 //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
+            } else {
+                finturno()
+            }
+           */
+        }
+        case 2 -> {
+            jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+            toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+        }
+        case 3 -> {
+            finTurno();
+            toret = "pierde Turno";
+        }
+        case 10 -> {
+            jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
+            toret = "10 PESOS VENEZOLANOS";
+        }
+        case 20 -> {
+            jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
+            toret = "20 PESOS VENEZOLANOS";
+        }
+        case 50 -> {
+            jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
+            toret = "50 PESOS VENEZOLANOS";
+        }
+        case 100 -> {
+            jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
+            toret = "100 PESOS VENEZOLANOS";
+        }
+        case 200 -> {
+            jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
+            toret = "200 PESOS VENEZOLANOS";
+        }
+
+    }
+
+
+    return toret ;
+}
+
+public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
+
+        comprobarConsonante();
+        System.out.println("Despues de comprobar consonante");
+
+        System.out.println("Elige ");
+        System.out.println("\n              MENU\n----------------------------------\n");
+        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
+        System.out.println("Que acción quieres llevar a cabo?\n");
+        System.out.println("1.Resolver panel");
+        System.out.println("2.Comprar vocal");
+        System.out.println("3.Salir de la partida");
+        System.out.println("\n \t PANEL ACTUAL: ");
+        System.out.print("\t");
+        mostrarPanel();
+        System.out.println("");
+
+        eleccionOpcionMenu = teclado.nextInt();
+        switch (eleccionOpcionMenu) {
+            case 1 -> {
+                System.out.println("Tienes el siguiente panel resuelto");
+                mostrarPanel();
+                System.out.println("Que frase piensas que es?");
+                resolverPanel();
+            }
+            case 2 -> {
+                System.out.println("\n\nComprando vocal...");
+                System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
+                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+            }
+            case 3 -> {
+                System.out.println("Saliendo de la partida... \n\n\n\n");
+                menuPrincipal();
+            }
+            default ->
+                System.out.println("Elige un valor valido");
+        }
+    }
+     
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -192,103 +292,10 @@ public class Ronda {
         return consonanteElegidaPorUsuario;
     }
 
-    public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
-
-        comprobarConsonante();
-        System.out.println("Despues de comprobar consonante");
-
-        System.out.println("Elige ");
-        System.out.println("\n              MENU\n----------------------------------\n");
-        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
-        System.out.println("Que acción quieres llevar a cabo?\n");
-        System.out.println("1.Resolver panel");
-        System.out.println("2.Comprar vocal");
-        System.out.println("3.Salir de la partida");
-        System.out.println("\n \t PANEL ACTUAL: ");
-        System.out.print("\t");
-        mostrarPanel();
-        System.out.println("");
-
-        eleccionOpcionMenu = teclado.nextInt();
-        switch (eleccionOpcionMenu) {
-            case 1 -> {
-                System.out.println("Tienes el siguiente panel resuelto");
-                mostrarPanel();
-                System.out.println("Que frase piensas que es?");
-                resolverPanel();
-            }
-            case 2 -> {
-                System.out.println("\n\nComprando vocal...");
-                System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
-                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
-            }
-            case 3 -> {
-                System.out.println("Saliendo de la partida... \n\n\n\n");
-                menuPrincipal();
-            }
-            default ->
-                System.out.println("Elige un valor valido");
-        }
-    }
-
-    /**
-     * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio que sera un posición de la string rule.
-     *
-     * @return 
-     */
-    public static String girarRuleta() {
-        int[] rule = Ruleta.rule();
-        String toret = "";
-        Random rnd = new Random();
-        int aleatorio = rnd.nextInt(7); //genera un numero random 
-
-        switch (rule[aleatorio]) {
-            case 1 -> {
-                jugadores[turno].setDinero(0); //esto esta bonito :)
-                toret = "quiebra";
-                Ronda.usarComodin();
-                //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
-            }
-            case 2 -> {
-                jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
-                toret = "comodin";
-                menuTrasGirarRuleta();
-            }
-            case 3 -> {
-                finTurno();
-                toret = "pierde Turno";
-            }
-            case 10 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
-                toret = "10 PESOS VENEZOLANOS";
-                menuTrasGirarRuleta();
-            }
-            case 20 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
-                toret = "20 PESOS VENEZOLANOS";
-                menuTrasGirarRuleta();
-            }
-            case 50 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
-                toret = "50 PESOS VENEZOLANOS";
-                menuTrasGirarRuleta();
-            }
-            case 100 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
-                toret = "100 PESOS VENEZOLANOS";
-                menuTrasGirarRuleta();
-            }
-            case 200 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
-                toret = "200 PESOS VENEZOLANOS";
-                menuTrasGirarRuleta();
-            }
-
-        }
+   
 
 
-        return toret;
-    }
+    
 
     /**
      * Usar comoodin en caso de que caigas en quiebra o en pierde turno...
