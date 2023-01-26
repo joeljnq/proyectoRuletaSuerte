@@ -13,10 +13,10 @@ public class Ronda {
     /*
                 TODO LIST MÍNIMOS
             -Poner la posibilidad 2 jugadores
-            -Resetear TODO cada vez que se ejecuta menuPartida()
-            -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro
+            -Resetear TODO cada vez que se ejecuta menuPartida().
+            -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro.
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
-            -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda
+            -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda.
             -
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
@@ -131,7 +131,7 @@ public class Ronda {
         }
         return panelUsuario;
     }
-
+    
     /**
      * Este metodo comprueba si la vocal está en la frase del panel
      *
@@ -241,7 +241,7 @@ public class Ronda {
 
         switch (rule[aleatorio]) {
             case 1 -> {
-                j1.setDinero(0);
+                jugadores[turno].setDinero(0); //esto esta bonito :)
                 toret = "quiebra";
                 Ronda.usarComodin();
             }
