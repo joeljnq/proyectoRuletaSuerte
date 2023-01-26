@@ -37,7 +37,7 @@ public class Ronda {
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
-
+    static boolean cancelarMenu;
     static Jugador[] jugadores = {new Jugador("pedro"), new Jugador("joel")};
 
     static int eleccionOpcionMenu;
@@ -48,6 +48,7 @@ public class Ronda {
         } else {
             turno++;
         }
+        menuPartida(frase, turno);
 
     }
 
@@ -117,32 +118,33 @@ public class Ronda {
         } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
 
     }
-    
+
     /**
-     * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio que sera un posición de la string rule.
+     * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
+     * que sera un posición de la string rule.
      *
-     * @return 
+     * @return
      */
     public static String girarRuleta() {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        static boolean cancelarMenu=false; //Esta variable es usada para cancelar la aparición del menu tras la ruleta en caso de que sea necesario (tra perder turno por ejemplo)
-    static int aleatorio = rnd.nextInt(7); //genera un numero random 
+        cancelarMenu = false; //Esta variable es usada para cancelar la aparición del menu tras la ruleta en caso de que sea necesario (tra perder turno por ejemplo)
+     int aleatorio = rnd.nextInt(7); //genera un numero random 
 
     switch (rule[aleatorio]) {
         case 1 -> {
-            jugadores[turno].setDinero(0); 
+            jugadores[turno].setDinero(0);
             toret = "quiebra";
             Ronda.usarComodin();//Hay que reparar ese metodo!!
-            
+
             //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
             /*if (comodinUsado==true) {
                  //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
             } else {
                 finturno()
             }
-           */
+             */
         }
         case 2 -> {
             jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
@@ -267,8 +269,10 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
         if (frase.equals(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
             panelResuelto = true;
             System.out.println("HAS RESUELTO EL PANEL");
+            //Hipoteticamente aqui deberia ir un siguiente Ronda
         } else {
             System.out.println("ERRASTE WEON");
+            finTurno();
         }
 
         return panelResuelto;
