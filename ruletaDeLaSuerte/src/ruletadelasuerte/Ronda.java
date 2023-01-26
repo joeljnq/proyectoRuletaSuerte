@@ -33,20 +33,23 @@ public class Ronda {
     public static String frase = "esto es una prueba";
     public static char[] panelUsuario = new char[frase.length()]; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
+    
+    static int turno=0;
+    
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
 
-    static Jugador[] jugadores = {new Jugador("pedro", true), new Jugador("joel", false)};
+    static Jugador[] jugadores = {new Jugador("pedro"), new Jugador("joel")};
 
-    static Jugador j1 = new Jugador("Juan", true); //Nombre del jugador y si está en su turno
-    static Jugador j2 = new Jugador("Pepe", false);
-    static Jugador j3 = new Jugador("toni", false);
+
     static int eleccionOpcionMenu;
-//for 
 
-    public boolean finRonda() {
-        return true;
+
+    static public void finTurno() {
+        if (turno>jugadores.length) {
+            turno=0;
+        }else turno++;
     }
 
     static public void menuPrincipal() {
@@ -60,7 +63,7 @@ public class Ronda {
         eleccionOpcionMenu = teclado.nextInt();
         //CIERRE DE MENU PRINCIPAL
         if (eleccionOpcionMenu == 1) {
-            menuPartida(jugadores[0].getNombre(), jugadores[0].getDinero());
+            menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
         }
     }
 
@@ -139,7 +142,7 @@ public class Ronda {
      */
     public static char[] comprobarVocal() {
 
-        char vocalElegidaPorUsuario = j1.comprarVocal();
+        char vocalElegidaPorUsuario = jugadores[turno].comprarVocal();
 
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == vocalElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
@@ -179,7 +182,7 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-        char consonanteElegidaPorUsuario = j1.decirConsonante();
+        char consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
@@ -196,7 +199,7 @@ public class Ronda {
 
         System.out.println("Elige ");
         System.out.println("\n              MENU\n----------------------------------\n");
-        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + j1.getNombre() + "\nDinero:" + j1.getDinero() + "\n");
+        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
         System.out.println("Que acción quieres llevar a cabo?\n");
         System.out.println("1.Resolver panel");
         System.out.println("2.Comprar vocal");
@@ -217,7 +220,7 @@ public class Ronda {
             case 2 -> {
                 System.out.println("\n\nComprando vocal...");
                 System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
-                menuPartida(jugadores[i].getNombre(), jugadores[i].getDinero());
+                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
             }
             case 3 -> {
                 System.out.println("Saliendo de la partida... \n\n\n\n");
@@ -237,7 +240,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(7); //genera un numero random 
+        int aleatorio = rnd.nextInt(4); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -246,73 +249,36 @@ public class Ronda {
                 Ronda.usarComodin();
             }
             case 2 -> {
-                j1.setComodin(j1.getComodin() + 1);
+                jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                 toret = "comodin";
             }
             case 3 -> {
-                j1.setTurno(false);
+                finTurno();
                 toret = "pierde Turno";
             }
             case 10 -> {
-                j1.setDinero(j1.getDinero() + 10);
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
                 toret = "10 PESOS VENEZOLANOS";
             }
             case 20 -> {
-                j1.setDinero(j1.getDinero() + 20);
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
                 toret = "20 PESOS VENEZOLANOS";
             }
             case 50 -> {
-                j1.setDinero(j1.getDinero() + 50);
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
                 toret = "50 PESOS VENEZOLANOS";
             }
             case 100 -> {
-                j1.setDinero(j1.getDinero() + 100);
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
                 toret = "100 PESOS VENEZOLANOS";
             }
             case 200 -> {
-                j1.setDinero(j1.getDinero() + 200);
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
                 toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
             }
 
         }
-        if (j2.isTurno()) {
-            switch (rule[aleatorio]) {
-                case 1 -> {
-                    j2.setDinero(0);
-                    toret = "quiebra";
-                    Ronda.usarComodin();
-                }
-                case 2 -> {
-                    j2.setComodin(j2.getComodin() + 1);
-                    toret = "comodin";
-                }
-                case 3 -> {
-                    j2.setTurno(false);
-                    toret = "pierde Turno";
-                }
-                case 10 -> {
-                    j2.setDinero(j2.getDinero() + 10);
-                    toret = "10 PESOS VENEZOLANOS";
-                }
-                case 20 -> {
-                    j2.setDinero(j2.getDinero() + 20);
-                    toret = "20 PESOS VENEZOLANOS";
-                }
-                case 50 -> {
-                    j2.setDinero(j2.getDinero() + 50);
-                    toret = "50 PESOS VENEZOLANOS";
-                }
-                case 100 -> {
-                    j2.setDinero(j2.getDinero() + 100);
-                    toret = "100 PESOS VENEZOLANOS";
-                }
-                case 200 -> {
-                    j2.setDinero(j2.getDinero() + 200);
-                    toret = "200 PESOS VENEZOLANOS";    //Bro con esto no me da ni pa un chicle
-                }
 
-            }
-        }
 
         return toret;
     }
@@ -324,20 +290,20 @@ public class Ronda {
      */
     public static String usarComodin() {
         teclado.nextLine();
-        if (j1.getComodin() > 0) {
-            System.out.println("tienes " + j1.getComodin() + " comodines" + "quieres usarlos?");
+        if (jugadores[turno].getComodin() > 0) {
+            System.out.println("tienes " + jugadores[turno].getComodin() + " comodines" + "quieres usarlos?");
             System.out.println("Responde con SI o NO");
             String pregunta = teclado.nextLine();
             if (pregunta.equalsIgnoreCase("si")) {
-                j1.setTurno(true);
+       //         jugadores[turno].setTurno(true);
             } else {
-                j1.setTurno(false);
+       //         jugadores[turno].setTurno(false);
             }
         }
         return "";
     }
 
-    public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
+   /* public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
         
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i].isTurno()) {
@@ -349,6 +315,7 @@ public class Ronda {
         }
 
     }
+*/
 
 //hola edelegado que putas haces
     // ns a que queires llegar

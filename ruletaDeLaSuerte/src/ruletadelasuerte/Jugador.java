@@ -12,11 +12,10 @@ public class Jugador {
     private static int comodin = 0; // indica el numero de comodines
     private int dinero = 100;//Inicializado a 100 para hacer pruebas
     private String nombre;
-    private boolean turno; // true el juegador puede jugar o false el jugador no puede jugar
 
-    public Jugador(String nombre, boolean turno) {
+    public Jugador(String nombre) {
         this.nombre = nombre;
-        this.turno = turno;
+       
     }
 
     /**
@@ -39,9 +38,7 @@ public class Jugador {
      *
      * @param turno
      */
-    public void setTurno(boolean turno) {
-        this.turno = turno;
-    }
+
 
     public int getComodin() {
         return comodin;
@@ -55,9 +52,7 @@ public class Jugador {
         return nombre;
     }
 
-    public boolean isTurno() {
-        return turno;
-    }
+
 
     /**
      * Esta función compra una vocal al ser llamada y se cumplen con el
