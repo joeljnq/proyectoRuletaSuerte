@@ -39,7 +39,7 @@ public class Ronda {
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
     static boolean cancelarMenu;
     static Jugador[] jugadores = {new Jugador("pedro"), new Jugador("joel")};
-
+    static int eleccionTrasGirarRuleta;
     static int eleccionOpcionMenu;
 
     static public void finTurno() {
@@ -224,8 +224,8 @@ public class Ronda {
         mostrarPanel();
         System.out.println("");
 
-        eleccionOpcionMenu = teclado.nextInt();
-        switch (eleccionOpcionMenu) {
+        eleccionTrasGirarRuleta = teclado.nextInt();
+        switch (eleccionTrasGirarRuleta) {
             case 1 -> {
                 System.out.println("Tienes el siguiente panel resuelto");
                 mostrarPanel();
