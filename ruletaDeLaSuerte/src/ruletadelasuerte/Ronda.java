@@ -54,19 +54,19 @@ public class Ronda {
     public static String crearFrase() {
         int selectorFrase = 0;
         Random rnd = new Random();
-        selectorFrase = rnd.nextInt(4+1);
+        selectorFrase = rnd.nextInt(4);
         switch (selectorFrase) {
+            case 0:
+                frase = "La paciencia es una virtud";
+                break;
             case 1:
-                frase="La paciencia es una virtud";
+                frase = "No hay mal que por bien no venga";
                 break;
             case 2:
-                frase="No hay mal que por bien no venga";
+                frase = "El tiempo cura todas las heridas";
                 break;
             case 3:
-                frase="El tiempo cura todas las heridas";
-                break;
-            case 4:
-                frase="La prisa es la enemiga de la perfección";
+                frase = "La prisa es la enemiga de la perfección";
                 break;
 
         }
@@ -74,9 +74,8 @@ public class Ronda {
     }
 
     static public void menuPrincipal() {
-        
-        //APERTURA DE MENÚ PRINCIPAL
 
+        //APERTURA DE MENÚ PRINCIPAL
         System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
         System.out.println("\n              MENU\n----------------------------------\n");
         System.out.println("1.Iniciar partida");
@@ -90,11 +89,11 @@ public class Ronda {
     }
 
     static public void menuPartida(String nome, int dinero) {
-        crearFrase();
-         panelUsuario = new char[frase.length()];
-        //Menú de partida
 
+        //Menú de partida
         if (!panelcreado) {
+            crearFrase();
+            panelUsuario = new char[frase.length()];
             GeneradorPanelUsuario();
             panelcreado = true;
         }
