@@ -17,7 +17,7 @@ public class Ronda {
             -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro.
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
             -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda.
-            -
+            -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
@@ -126,62 +126,63 @@ public class Ronda {
      * @return
      */
     public static String girarRuleta() {
+        boolean comodinUsado = true;
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        cancelarMenu = false; //Esta variable es usada para cancelar la aparición del menu tras la ruleta en caso de que sea necesario (tra perder turno por ejemplo)
-     int aleatorio = rnd.nextInt(7); //genera un numero random 
+        int aleatorio = rnd.nextInt(8); //genera un numero random 
 
-    switch (rule[aleatorio]) {
-        case 1 -> {
-            jugadores[turno].setDinero(0);
-            toret = "quiebra";
-            Ronda.usarComodin();//Hay que reparar ese metodo!!
+        switch (rule[aleatorio]) {
+            case 1 -> {
+                jugadores[turno].setDinero(0);
+                toret = "quiebra";
+                Ronda.usarComodin();//Hay que reparar ese metodo!!
 
-            //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
-            /*if (comodinUsado==true) {
-                 //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
-            } else {
-                finturno()
+                //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
+                if (comodinUsado == true) {
+                    jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
+                    menuTrasGirarRuleta();
+                } else {
+                    finTurno();
+                }
+
             }
-             */
-        }
-        case 2 -> {
-            jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
-            toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
-        }
-        case 3 -> {
-            finTurno();
-            toret = "pierde Turno";
-        }
-        case 10 -> {
-            jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
-            toret = "10 PESOS VENEZOLANOS";
-        }
-        case 20 -> {
-            jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
-            toret = "20 PESOS VENEZOLANOS";
-        }
-        case 50 -> {
-            jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
-            toret = "50 PESOS VENEZOLANOS";
-        }
-        case 100 -> {
-            jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
-            toret = "100 PESOS VENEZOLANOS";
-        }
-        case 200 -> {
-            jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
-            toret = "200 PESOS VENEZOLANOS";
+            case 2 -> {
+                jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+                toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+            }
+            case 3 -> {
+                toret = "pierde Turno";
+                finTurno();
+
+            }
+            case 10 -> {
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
+                toret = "10 PESOS VENEZOLANOS";
+            }
+            case 20 -> {
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
+                toret = "20 PESOS VENEZOLANOS";
+            }
+            case 50 -> {
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
+                toret = "50 PESOS VENEZOLANOS";
+            }
+            case 100 -> {
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
+                toret = "100 PESOS VENEZOLANOS";
+            }
+            case 200 -> {
+                jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
+                toret = "200 PESOS VENEZOLANOS";
+            }
+
         }
 
+        return toret;
     }
 
-
-    return toret ;
-}
-
-public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
+    public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
 
         comprobarConsonante();
         System.out.println("Despues de comprobar consonante");
@@ -192,7 +193,8 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
         System.out.println("Que acción quieres llevar a cabo?\n");
         System.out.println("1.Resolver panel");
         System.out.println("2.Comprar vocal");
-        System.out.println("3.Salir de la partida");
+        System.out.println("3.Girar Ruleta");
+        System.out.println("4.Salir de la partida");
         System.out.println("\n \t PANEL ACTUAL: ");
         System.out.print("\t");
         mostrarPanel();
@@ -212,6 +214,10 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
                 menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
             }
             case 3 -> {
+                System.out.println("Girando Ruleta...");
+                girarRuleta();
+            }
+            case 4 -> {
                 System.out.println("Saliendo de la partida... \n\n\n\n");
                 menuPrincipal();
             }
@@ -219,7 +225,7 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
                 System.out.println("Elige un valor valido");
         }
     }
-     
+
     /**
      *
      * @return El panel en forma de array de chars a partir de "frase" con los
@@ -227,7 +233,7 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
      */
     public static char[] GeneradorPanelUsuario() {//Se debe ejecutar una sola vez para generarlo
         for (int i = 0; i < frase.length(); i++) {
-            
+
             if (Character.isWhitespace(frase.charAt(i))) {
                 panelUsuario[i] = ' ';
             } else {
@@ -236,7 +242,7 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
         }
         return panelUsuario;
     }
-    
+
     /**
      * Este metodo comprueba si la vocal está en la frase del panel
      *
@@ -296,11 +302,6 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
         return consonanteElegidaPorUsuario;
     }
 
-   
-
-
-    
-
     /**
      * Usar comoodin en caso de que caigas en quiebra o en pierde turno...
      *
@@ -313,15 +314,15 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
             System.out.println("Responde con SI o NO");
             String pregunta = teclado.nextLine();
             if (pregunta.equalsIgnoreCase("si")) {
-       //         jugadores[turno].setTurno(true);
+                //         jugadores[turno].setTurno(true);
             } else {
-       //         jugadores[turno].setTurno(false);
+                //         jugadores[turno].setTurno(false);
             }
         }
         return "";
     }
 
-   /* public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
+    /* public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
         
         for (int i = 0; i < jugadores.length; i++) {
             if (jugadores[i].isTurno()) {
@@ -333,8 +334,7 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
         }
 
     }
-*/
-
+     */
 //hola edelegado que putas haces
     // ns a que queires llegar
     //pero ya esta?
@@ -349,5 +349,4 @@ public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que d
     //
     //
     //
-    
 }

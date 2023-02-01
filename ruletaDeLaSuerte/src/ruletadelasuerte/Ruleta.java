@@ -20,5 +20,5 @@ public class Ruleta {
     return rule;
         }
 
-   
+       
 }
