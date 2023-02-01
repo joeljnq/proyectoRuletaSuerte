@@ -238,7 +238,9 @@ public class Ronda {
             }
             case 3 -> {
                 System.out.println("Girando Ruleta...");
-                girarRuleta();
+                System.out.println(girarRuleta());
+                menuTrasGirarRuleta();
+                
             }
             case 4 -> {
                 System.out.println("Saliendo de la partida... \n\n\n\n");
