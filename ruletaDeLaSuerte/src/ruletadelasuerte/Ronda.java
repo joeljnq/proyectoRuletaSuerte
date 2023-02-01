@@ -12,11 +12,10 @@ public class Ronda {
 
     /*
                 TODO LIST MÍNIMOS
-            -Hay que reparar el método Ronda.usarComodin() !!
+            -Hay que reparar el método Ronda.usarComodin() !!(por si acaso comprobar)
             -Resetear TODO cada vez que se ejecuta menuPartida().
             -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro.
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
-            -Crear varias frases para el panel y aplicarlas para que salgan aleatoriamente cada ronda.
             -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
