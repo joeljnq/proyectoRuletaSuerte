@@ -154,12 +154,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-<<<<<<< Updated upstream
         int aleatorio = rnd.nextInt(8); //genera un numero random 
-=======
-        cancelarMenu = false; //Esta variable es usada para cancelar la aparición del menu tras la ruleta en caso de que sea necesario (tra perder turno por ejemplo)
-        int aleatorio = rnd.nextInt(7); //genera un numero random 
->>>>>>> Stashed changes
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -168,7 +163,6 @@ public class Ronda {
                 Ronda.usarComodin();//Hay que reparar ese metodo!!
 
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
-<<<<<<< Updated upstream
                 if (comodinUsado == true) {
                     jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
                     menuTrasGirarRuleta();
@@ -177,21 +171,11 @@ public class Ronda {
                 }
 
             }
-=======
-                /*if (comodinUsado==true) {
-                 //menuTrasGirarRuleta(); //HAY Q TOCAR ESTO
-            } else {
-                finturno()
-            }
-                 */
-            }
->>>>>>> Stashed changes
             case 2 -> {
                 jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
             }
             case 3 -> {
-<<<<<<< Updated upstream
                 toret = "pierde Turno";
                 finTurno();
 
@@ -222,37 +206,6 @@ public class Ronda {
         return toret;
     }
 
-=======
-                finTurno();
-                toret = "pierde Turno";
-            }
-            case 10 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
-                toret = "10 PESOS VENEZOLANOS";
-            }
-            case 20 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
-                toret = "20 PESOS VENEZOLANOS";
-            }
-            case 50 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
-                toret = "50 PESOS VENEZOLANOS";
-            }
-            case 100 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
-                toret = "100 PESOS VENEZOLANOS";
-            }
-            case 200 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
-                toret = "200 PESOS VENEZOLANOS";
-            }
-
-        }
-
-        return toret;
-    }
-
->>>>>>> Stashed changes
     public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
 
         comprobarConsonante();
