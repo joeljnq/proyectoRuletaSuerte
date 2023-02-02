@@ -41,10 +41,10 @@ public class Ronda {
     static int eleccionOpcionMenu;
 
     static public void finTurno() {
-        if (turno > jugadores.length) {
+        if (turno -1 >= jugadores.length) {
             turno = 0;
         } else {
-            turno++;
+            ++turno;
         }
         menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
@@ -151,7 +151,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(3); //genera un numero random 
+        int aleatorio = rnd.nextInt(10); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
