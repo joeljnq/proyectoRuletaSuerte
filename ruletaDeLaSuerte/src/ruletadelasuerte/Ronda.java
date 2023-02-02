@@ -2,6 +2,7 @@ package ruletadelasuerte;
 
 import java.util.Random;
 import java.util.Scanner;
+import javax.print.attribute.standard.Finishings;
 
 /**
  *
@@ -13,10 +14,9 @@ public class Ronda {
     /*
                 TODO LIST MÍNIMOS
             -Hay que reparar el método Ronda.usarComodin() !!(por si acaso comprobar)
-            -Resetear TODO cada vez que se ejecuta menuPartida().
-            -Aplicar el comprobar consonante tras tirar ruleta(?) //En proceso por Pedro.
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
             -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
+    
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
@@ -36,7 +36,6 @@ public class Ronda {
 
     public static int rondaActual = 1;
     static Scanner teclado = new Scanner(System.in, "ISO-8859-1");
-    static boolean cancelarMenu;
     static Jugador[] jugadores = {new Jugador("pedro"), new Jugador("joel")};
     static int eleccionTrasGirarRuleta;
     static int eleccionOpcionMenu;
@@ -73,7 +72,7 @@ public class Ronda {
     }
 
     static public void menuPrincipal() {
-
+        resetearDatos();
         //APERTURA DE MENÚ PRINCIPAL
         System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
         System.out.println("\n              MENU\n----------------------------------\n");
@@ -350,31 +349,12 @@ public class Ronda {
         return "";
     }
 
-    /* public static void jugadores() { //AQUI HABRÍA Q METER PRACTICAMENTE TODO :')
-        
+
+    
+    public static void resetearDatos(){
         for (int i = 0; i < jugadores.length; i++) {
-            if (jugadores[i].isTurno()) {
-                Ronda.menuPartida(jugadores[i].getNombre(), jugadores[i].getDinero());
-                Ronda.girarRuleta();
-                
-            }
-
+            jugadores[i].setDinero(0);
+            jugadores[i].setComodin(0);
         }
-
     }
-     */
-//hola edelegado que putas haces
-    // ns a que queires llegar
-    //pero ya esta?
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
 }
