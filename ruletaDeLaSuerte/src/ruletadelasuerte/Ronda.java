@@ -41,11 +41,12 @@ public class Ronda {
     static int eleccionOpcionMenu;
 
     static public void finTurno() {
-        if (turno > jugadores.length) {
+        turno++;
+        if (turno >= jugadores.length){
+            
             turno = 0;
-        } else {
-            turno++;
-        }
+        }       
+         System.out.println(turno);
         menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
