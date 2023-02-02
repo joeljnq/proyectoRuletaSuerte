@@ -42,11 +42,9 @@ public class Ronda {
 
     static public void finTurno() {
         turno++;
-        if (turno >= jugadores.length){
-            
+        if (turno >= jugadores.length) {
             turno = 0;
-        }       
-         System.out.println(turno);
+        }
         menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
@@ -147,6 +145,8 @@ public class Ronda {
      *
      * @return
      */
+    public static char consonanteElegidaPorUsuario;
+
     public static void girarRuleta() {
         boolean comodinUsado = true;
         int[] rule = Ruleta.rule();
@@ -187,9 +187,14 @@ public class Ronda {
 
             }
             case 10 -> {
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
+                    } else {
+                        finTurno();
+                        System.out.println("La consonante está no se encuentra en el panel");
+
                     }
                 }
 
@@ -197,29 +202,43 @@ public class Ronda {
                 System.out.println(toret);
             }
             case 20 -> {
-
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
+                    } else {
+                        finTurno();
+                        System.out.println("La consonante está no se encuentra en el panel");
+
                     }
                 }
                 toret = "20 PESOS VENEZOLANOS";
                 System.out.println(toret);
             }
             case 50 -> {
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
+                    } else {
+                        finTurno();
+                        System.out.println("La consonante está no se encuentra en el panel");
+
                     }
                 }
                 toret = "50 PESOS VENEZOLANOS";
                 System.out.println(toret);
             }
             case 100 -> {
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
+                    } else {
+                        finTurno();
+                        System.out.println("La consonante está no se encuentra en el panel");
+
                     }
                 }
 
@@ -227,9 +246,14 @@ public class Ronda {
                 System.out.println(toret);
             }
             case 200 -> {
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
+
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
+                    } else {
+                        finTurno();
+                        System.out.println("La consonante está no se encuentra en el panel");
                     }
                 }
 
@@ -244,7 +268,6 @@ public class Ronda {
     public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
 
         comprobarConsonante();
-        System.out.println("Despues de comprobar consonante");
 
         System.out.println("Elige ");
         System.out.println("\n              MENU\n----------------------------------\n");
@@ -353,7 +376,6 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-        char consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
