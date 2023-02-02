@@ -47,7 +47,7 @@ public class Ronda {
         } else {
             turno++;
         }
-        menuPartida(frase, turno);
+        menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
     public static String crearFrase() {
@@ -152,7 +152,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(8); //genera un numero random 
+        int aleatorio = rnd.nextInt(3); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -170,7 +170,11 @@ public class Ronda {
 
             }
             case 2 -> {
-                jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+                    }
+                }        
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
             }
             case 3 -> {
