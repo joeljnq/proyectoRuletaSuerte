@@ -152,7 +152,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(3); //genera un numero random 
+        int aleatorio = rnd.nextInt(10); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
