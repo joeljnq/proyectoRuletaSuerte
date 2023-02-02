@@ -152,7 +152,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(10); //genera un numero random 
+        int aleatorio = rnd.nextInt(8); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -172,7 +172,7 @@ public class Ronda {
             }
             case 2 -> {
                 for (int i = 0; i < frase.length(); i++) {
-                    if (comprobarConsonante() == frase.charAt(i)) {
+                    if (comprobarConsonante()/*Poner aqui el char at en vez de comprobar consonante(?) JOEL*/ == frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                     }
                 }
@@ -187,6 +187,8 @@ public class Ronda {
 
             }
             case 10 -> {
+                toret = "Por 10 PESOS VENEZOLANOS...";
+                System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
@@ -198,10 +200,11 @@ public class Ronda {
                     }
                 }
 
-                toret = "10 PESOS VENEZOLANOS";
-                System.out.println(toret);
+              
             }
             case 20 -> {
+                toret = "Por 20 PESOS VENEZOLANOS...";
+                System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
@@ -212,10 +215,11 @@ public class Ronda {
 
                     }
                 }
-                toret = "20 PESOS VENEZOLANOS";
-                System.out.println(toret);
+                
             }
             case 50 -> {
+                toret = "Por 50 PESOS VENEZOLANOS...";
+                System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
@@ -226,10 +230,11 @@ public class Ronda {
 
                     }
                 }
-                toret = "50 PESOS VENEZOLANOS";
-                System.out.println(toret);
+                
             }
             case 100 -> {
+                toret = "Por 100 PESOS VENEZOLANOS...";
+                System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
                 for (int i = 0; i < frase.length(); i++) {
@@ -242,10 +247,11 @@ public class Ronda {
                     }
                 }
 
-                toret = "100 PESOS VENEZOLANOS";
-                System.out.println(toret);
+                
             }
             case 200 -> {
+                toret = "Por 200 PESOS VENEZOLANOS...";
+                System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
                 for (int i = 0; i < frase.length(); i++) {
@@ -257,8 +263,6 @@ public class Ronda {
                     }
                 }
 
-                toret = "200 PESOS VENEZOLANOS";
-                System.out.println(toret);
             }
 
         }
@@ -269,7 +273,6 @@ public class Ronda {
 
         comprobarConsonante();
 
-        System.out.println("Elige ");
         System.out.println("\n              MENU\n----------------------------------\n");
         System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
         System.out.println("Que acción quieres llevar a cabo?\n");
