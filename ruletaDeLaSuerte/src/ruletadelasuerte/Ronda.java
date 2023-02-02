@@ -113,7 +113,7 @@ public class Ronda {
             switch (eleccionOpcionMenu) {
                 case 1 -> {
                     //EJECUTAR EL METODO TIRAR RULETA
-                    System.out.println(Ronda.girarRuleta());
+                    Ronda.girarRuleta();
                     menuTrasGirarRuleta(); //Poner un if para que no se haga en caso de 
 
                     //  menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
@@ -146,7 +146,7 @@ public class Ronda {
      *
      * @return
      */
-    public static String girarRuleta() {
+    public static void girarRuleta() {
         boolean comodinUsado = true;
         int[] rule = Ruleta.rule();
         String toret = "";
@@ -157,6 +157,7 @@ public class Ronda {
             case 1 -> {
                 jugadores[turno].setDinero(0);
                 toret = "quiebra";
+                System.out.println(toret);
                 Ronda.usarComodin();//Hay que reparar ese metodo!!
 
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
@@ -173,38 +174,70 @@ public class Ronda {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                     }
-                }        
+                }
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+                System.out.println(toret);
             }
             case 3 -> {
                 toret = "pierde Turno";
+                System.out.println(toret);
+
                 finTurno();
 
             }
             case 10 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
+                    }
+                }
+
                 toret = "10 PESOS VENEZOLANOS";
+                System.out.println(toret);
             }
             case 20 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
+
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setDinero(jugadores[turno].getDinero() + 20);
+                    }
+                }
                 toret = "20 PESOS VENEZOLANOS";
+                System.out.println(toret);
             }
             case 50 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setDinero(jugadores[turno].getDinero() + 50);
+                    }
+                }
                 toret = "50 PESOS VENEZOLANOS";
+                System.out.println(toret);
             }
             case 100 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
+
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setDinero(jugadores[turno].getDinero() + 100);
+                    }
+                }
+
                 toret = "100 PESOS VENEZOLANOS";
+                System.out.println(toret);
             }
             case 200 -> {
-                jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
+                for (int i = 0; i < frase.length(); i++) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
+                        jugadores[turno].setDinero(jugadores[turno].getDinero() + 200);
+                    }
+                }
+
                 toret = "200 PESOS VENEZOLANOS";
+                System.out.println(toret);
             }
 
         }
 
-        return toret;
     }
 
     public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
@@ -240,9 +273,9 @@ public class Ronda {
             }
             case 3 -> {
                 System.out.println("Girando Ruleta...");
-                System.out.println(girarRuleta());
+                girarRuleta();
                 menuTrasGirarRuleta();
-                
+
             }
             case 4 -> {
                 System.out.println("Saliendo de la partida... \n\n\n\n");
@@ -349,9 +382,7 @@ public class Ronda {
         return "";
     }
 
-
-    
-    public static void resetearDatos(){
+    public static void resetearDatos() {
         for (int i = 0; i < jugadores.length; i++) {
             jugadores[i].setDinero(0);
             jugadores[i].setComodin(0);
