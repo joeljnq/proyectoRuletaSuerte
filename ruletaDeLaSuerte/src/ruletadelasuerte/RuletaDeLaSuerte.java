@@ -15,16 +15,11 @@ public class RuletaDeLaSuerte {
     public static void main(String[] args) {
         
         final int limitRonda = 2; //El limite de rondas de una partida
+        while(limitRonda!=Ronda.rondaActual){
         Ronda.menuPrincipal();
-        
-        
-
-        
-        
-        
-        
-        //BORRAR J1.GET.NOME DEL MENÚ PRINCIPAL Y REMPLAZARLO PARA PEDIR UNA STRING AL INICIALIZAR EL METODO PARA QUE PUEDA SER USADO PARA CADA JGUADOR.
-        //
+        }
+        System.out.println("Fin del juego, GG");
+      
     }
 
 }

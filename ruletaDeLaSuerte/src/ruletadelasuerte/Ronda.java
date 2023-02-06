@@ -14,7 +14,7 @@ public class Ronda {
     /*
                 TODO LIST MÍNIMOS
             -Hay que reparar el método Ronda.usarComodin() !!(por si acaso comprobar)
-            -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite.
+            -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite. //En proceso por Pedro
             -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
     
                 TODO EXTRAS
@@ -28,7 +28,7 @@ public class Ronda {
             -Revisar el ambito de las clases (si deberian ser privadas/publicas...)
  
      */
-    public static String frase = "esto es una prueba";
+    public static String frase = "";
     public static char[] panelUsuario; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
 
@@ -51,7 +51,7 @@ public class Ronda {
     public static String crearFrase() {
         int selectorFrase = 0;
         Random rnd = new Random();
-        selectorFrase = rnd.nextInt(4);
+        selectorFrase = rnd.nextInt(1);
         switch (selectorFrase) {
             case 0:
                 frase = "La paciencia es una virtud";
@@ -79,6 +79,7 @@ public class Ronda {
         System.out.println("2.Salir");
         System.out.println("3.Creditos(en mantenimiento)");
         eleccionOpcionMenu = teclado.nextInt();
+        teclado.nextLine();
         //CIERRE DE MENU PRINCIPAL
         if (eleccionOpcionMenu == 1) {
             menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
@@ -100,7 +101,7 @@ public class Ronda {
             System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + nome + "\nDinero:" + dinero + "\n");
             System.out.println("Que acción quieres llevar a cabo?\n");
             System.out.println("1.Tirar ruleta");
-            System.out.println("2.Resolver panel");//TODO Pedro Crear método resolverPanel
+            System.out.println("2.Resolver panel");
             System.out.println("3.Comprar vocal");
             System.out.println("4.Salir de la partida");
             System.out.println("\n \t PANEL ACTUAL: ");
@@ -113,8 +114,11 @@ public class Ronda {
                 case 1 -> {
                     //EJECUTAR EL METODO TIRAR RULETA
                     Ronda.girarRuleta();
-                    menuTrasGirarRuleta(); //Poner un if para que no se haga en caso de 
-
+                    if (caidoEnComodin) {
+                        Ronda.menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+                    } else {
+                        menuTrasGirarRuleta(); //Poner un if para que no se haga en caso de 
+                    }
                     //  menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
                 }
                 case 2 -> {
@@ -136,7 +140,7 @@ public class Ronda {
                     System.out.println("Elige un valor valido");
             }
         } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
-
+        teclado.nextLine();
     }
 
     /**
@@ -146,9 +150,11 @@ public class Ronda {
      * @return
      */
     public static char consonanteElegidaPorUsuario;
+    static boolean caidoEnComodin = false;
 
     public static void girarRuleta() {
         boolean comodinUsado = true;
+
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
@@ -156,6 +162,7 @@ public class Ronda {
 
         switch (rule[aleatorio]) {
             case 1 -> {
+
                 jugadores[turno].setDinero(0);
                 toret = "quiebra";
                 System.out.println(toret);
@@ -171,6 +178,7 @@ public class Ronda {
 
             }
             case 2 -> {
+                caidoEnComodin = true;
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante()/*Poner aqui el char at en vez de comprobar consonante(?) JOEL*/ == frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
@@ -200,7 +208,6 @@ public class Ronda {
                     }
                 }
 
-              
             }
             case 20 -> {
                 toret = "Por 20 PESOS VENEZOLANOS...";
@@ -215,7 +222,7 @@ public class Ronda {
 
                     }
                 }
-                
+
             }
             case 50 -> {
                 toret = "Por 50 PESOS VENEZOLANOS...";
@@ -230,7 +237,7 @@ public class Ronda {
 
                     }
                 }
-                
+
             }
             case 100 -> {
                 toret = "Por 100 PESOS VENEZOLANOS...";
@@ -247,7 +254,6 @@ public class Ronda {
                     }
                 }
 
-                
             }
             case 200 -> {
                 toret = "Por 200 PESOS VENEZOLANOS...";
@@ -356,13 +362,15 @@ public class Ronda {
     }
 
     public static boolean resolverPanel() {
-        String usuarioResuelvePanel = teclado.next();
+        teclado.nextLine();
+        String usuarioResuelvePanel = teclado.nextLine();
         boolean panelResuelto = false;
+        
 
         if (frase.equals(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
             panelResuelto = true;
             System.out.println("HAS RESUELTO EL PANEL");
-            //Hipoteticamente aqui deberia ir un siguiente Ronda
+            finRonda();
         } else {
             System.out.println("ERRASTE WEON");
             finTurno();
@@ -414,4 +422,21 @@ public class Ronda {
             jugadores[i].setComodin(0);
         }
     }
+
+    public static void resetearDatosExceptoGanador() {
+        int dineroGanadorRonda = jugadores[turno].getDinero();
+        int comodinesGanadorRonda = jugadores[turno].getComodin();
+        resetearDatos();
+        jugadores[turno].setDinero(dineroGanadorRonda);
+        jugadores[turno].setComodin(comodinesGanadorRonda);
+
+    }
+
+    public static void finRonda() {
+        resetearDatosExceptoGanador();
+        GeneradorPanelUsuario();
+        rondaActual++;
+        menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+    }
+
 }
