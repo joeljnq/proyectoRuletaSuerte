@@ -16,6 +16,8 @@ public class Ronda {
             -Hay que reparar el método Ronda.usarComodin() !!(por si acaso comprobar)
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite. //En proceso por Pedro
             -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
+            -Solucionar limite de ronda
+            -MUCHOS BUGS,AAAAA TODO ESTÁ EN LLAMAS!
     
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
