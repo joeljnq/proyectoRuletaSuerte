@@ -19,6 +19,7 @@ public class Ronda {
             -Solucionar limite de ronda
             -Reparar el "Quiebra" (mirar los comentarios en el)
             -Reparar el que se pueda añadir una consonante ya añadida (y cobrar por ella)
+            -Tras comprobar el resolverVocal se muere el programa
             -MUCHOS BUGS,AAAAA TODO ESTÁ EN LLAMAS!
     
                 TODO EXTRAS
@@ -30,10 +31,12 @@ public class Ronda {
             -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
             -Hacer array de consonantes comprobarConsonante en la clase jugador
             -Revisar el ambito de las clases (si deberian ser privadas/publicas...)
+            -IgnoreCase para la resolución del enigma/vocal/consonante
+            -Mostrar el ganador de la partida
             
  
      */
-    final static int limitRonda = 2; //El limite de rondas de una partida
+    final static int limitRonda = 3; //El limite de rondas de una partida
     public static String frase = "";
     public static char[] panelUsuario; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
@@ -94,54 +97,58 @@ public class Ronda {
     }
 
     static public void menuPartida(String nome, int dinero) {
+        if (rondaActual == limitRonda+1) {
+            
+        } else {
 
-        //Menú de partida
-        if (!panelcreado) {
-            crearFrase();
-            panelUsuario = new char[frase.length()];
-            GeneradorPanelUsuario();
-            panelcreado = true;
-        }
-
-        do {
-            System.out.println("\n              MENU\n----------------------------------\n");
-            System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + nome + "\nDinero:" + dinero + "\n");
-            System.out.println("Que acción quieres llevar a cabo?\n");
-            System.out.println("1.Girar ruleta");
-            System.out.println("2.Resolver panel");
-            System.out.println("3.Comprar vocal");
-            System.out.println("4.Salir de la partida");
-            System.out.println("\n \t PANEL ACTUAL: ");
-            System.out.print("\t");
-            mostrarPanel();
-            System.out.println("");
-
-            eleccionOpcionMenu = teclado.nextInt();
-            switch (eleccionOpcionMenu) {
-                case 1 -> {
-                    //EJECUTAR EL METODO TIRAR RULETA
-                    Ronda.girarRuleta();
-                }
-                case 2 -> {
-                    System.out.println("Tienes el siguiente panel resuelto");
-                    mostrarPanel();
-                    System.out.println("Que frase piensas que es?");
-                    resolverPanel();
-                }
-                case 3 -> {
-                    System.out.println("\n\nComprando vocal...");
-                    System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
-                    // menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
-                }
-                case 4 -> {
-                    System.out.println("Saliendo de la partida... \n\n\n\n");
-                    menuPrincipal();
-                }
-                default ->
-                    System.out.println("Elige un valor valido");
+            //Menú de partida
+            if (!panelcreado) {
+                crearFrase();
+                panelUsuario = new char[frase.length()];
+                GeneradorPanelUsuario();
+                panelcreado = true;
             }
-        } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
-        teclado.nextLine();
+
+            do {
+                System.out.println("\n              MENU\n----------------------------------\n");
+                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + nome + "\nDinero:" + dinero + "\n");
+                System.out.println("Que acción quieres llevar a cabo?\n");
+                System.out.println("1.Girar ruleta");
+                System.out.println("2.Resolver panel");
+                System.out.println("3.Comprar vocal");
+                System.out.println("4.Salir de la partida");
+                System.out.println("\n \t PANEL ACTUAL: ");
+                System.out.print("\t");
+                mostrarPanel();
+                System.out.println("");
+
+                eleccionOpcionMenu = teclado.nextInt();
+                switch (eleccionOpcionMenu) {
+                    case 1 -> {
+                        //EJECUTAR EL METODO TIRAR RULETA
+                        Ronda.girarRuleta();
+                    }
+                    case 2 -> {
+                        System.out.println("Tienes el siguiente panel resuelto");
+                        mostrarPanel();
+                        System.out.println("Que frase piensas que es?");
+                        resolverPanel();
+                    }
+                    case 3 -> {
+                        System.out.println("\n\nComprando vocal...");
+                        System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
+                        // menuPartida(); Eliminamos el menu partida por un submenu con las opciones que deben estar
+                    }
+                    case 4 -> {
+                        System.out.println("Saliendo de la partida... \n\n\n\n");
+                        menuPrincipal();
+                    }
+                    default ->
+                        System.out.println("Elige un valor valido");
+                }
+            } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
+            
+        }
     }
 
     /**
@@ -187,6 +194,7 @@ public class Ronda {
                 }
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
                 System.out.println(toret);
+                menuTrasGirarRuleta();
             }
             case 3 -> {
                 toret = "pierde Turno";
@@ -203,14 +211,14 @@ public class Ronda {
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setDinero(jugadores[turno].getDinero() + 10);
-                        acertado=true;
+                        acertado = true;
                     }
                 }
                 if (acertado == false) {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                }else if (acertado== true) {
+                } else if (acertado == true) {
                     menuTrasGirarRuleta();
                 }
 
@@ -230,7 +238,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                }else if (acertado== true) {
+                } else if (acertado == true) {
                     menuTrasGirarRuleta();
                 }
 
@@ -250,7 +258,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                }else if (acertado== true) {
+                } else if (acertado == true) {
                     menuTrasGirarRuleta();
                 }
 
@@ -271,7 +279,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                }else if (acertado== true) {
+                } else if (acertado == true) {
                     menuTrasGirarRuleta();
                 }
 
@@ -292,7 +300,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                }else if (acertado== true) {
+                } else if (acertado == true) {
                     menuTrasGirarRuleta();
                 }
 
