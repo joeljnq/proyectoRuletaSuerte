@@ -178,7 +178,6 @@ public class Ronda {
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
                 if (comodinUsado == true) {
                     jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
-                    //menuTrasGirarRuleta();
                 } else {
                     finTurno();
                 }
@@ -193,7 +192,6 @@ public class Ronda {
                 }
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
                 System.out.println(toret);
-                //menuTrasGirarRuleta();
             }
             case 3 -> {
                 toret = "pierde Turno";
@@ -217,9 +215,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } else if (acertado == true) {
-                    //menuTrasGirarRuleta();
-                }
+                } 
 
             }
             case 20 -> {
@@ -237,9 +233,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } else if (acertado == true) {
-                    //menuTrasGirarRuleta();
-                }
+                } 
 
             }
             case 50 -> {
@@ -257,10 +251,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } else if (acertado == true) {
-                    //menuTrasGirarRuleta();
-                }
-
+                } 
             }
             case 100 -> {
                 boolean acertado = false; //Sirve para saber si en todo el for apareció al menos una coincidencia
@@ -278,9 +269,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } else if (acertado == true) {
-                    //menuTrasGirarRuleta();
-                }
+                } 
 
             }
             case 200 -> {
@@ -299,60 +288,12 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } else if (acertado == true) {
-                    //menuTrasGirarRuleta();
-                }
+                } 
 
             }
 
         }
 
-    }
-
-    public static void menuTrasGirarRuleta() { //Giras, te toca dinero, tienes que decir consonante, si el consonante está en el panel aparecerán las opciones comprar vocal o resolver panel, en caso de que no esté piernes turno
-
-        comprobarConsonante();
-
-        System.out.println("\n              MENU\n----------------------------------\n");
-        System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
-        System.out.println("Que acción quieres llevar a cabo?\n");
-        System.out.println("1.Girar Ruleta");
-        System.out.println("2.Resolver panel");
-        System.out.println("3.Comprar vocal");
-        System.out.println("4.Salir de la partida");
-        System.out.println("\n \t PANEL ACTUAL: ");
-        System.out.print("\t");
-        mostrarPanel();
-        System.out.println("");
-
-        eleccionTrasGirarRuleta = teclado.nextInt();
-        switch (eleccionTrasGirarRuleta) {
-            case 1 -> {
-                System.out.println("Girando Ruleta...");
-                girarRuleta();
-                menuTrasGirarRuleta();
-
-            }
-            case 2 -> {
-                System.out.println("Tienes el siguiente panel resuelto");
-                mostrarPanel();
-                System.out.println("Que frase piensas que es?");
-                resolverPanel();
-            }
-            case 3 -> {
-
-                System.out.println("\n\nComprando vocal...");
-                System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
-                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
-
-            }
-            case 4 -> {
-                System.out.println("Saliendo de la partida... \n\n\n\n");
-                //menuPrincipal();
-            }
-            default ->
-                System.out.println("Elige un valor valido");
-        }
     }
 
     /**
