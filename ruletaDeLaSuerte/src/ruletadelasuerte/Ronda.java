@@ -54,7 +54,7 @@ public class Ronda {
         if (turno >= jugadores.length) {
             turno = 0;
         }
-        menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+        //menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
     public static String crearFrase() {
@@ -81,25 +81,25 @@ public class Ronda {
     }
 
     static public void menuPrincipal() {
-        resetearDatos();
-        //APERTURA DE MENÚ PRINCIPAL
-        System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
-        System.out.println("\n              MENU\n----------------------------------\n");
-        System.out.println("1.Iniciar partida");
-        System.out.println("2.Salir");
-        System.out.println("3.Creditos(en mantenimiento)");
-        eleccionOpcionMenu = teclado.nextInt();
-        teclado.nextLine();
-        //CIERRE DE MENU PRINCIPAL
-        if (eleccionOpcionMenu == 1) {
-            menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
-        }
+        do {
+            resetearDatos();
+            //APERTURA DE MENÚ PRINCIPAL
+            System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
+            System.out.println("\n              MENU\n----------------------------------\n");
+            System.out.println("1.Iniciar partida");
+            System.out.println("2.Salir");
+            System.out.println("3.Creditos(en mantenimiento)");
+            eleccionOpcionMenu = teclado.nextInt();
+            teclado.nextLine();
+            //CIERRE DE MENU PRINCIPAL
+            if (eleccionOpcionMenu == 1) {
+                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+            }
+        } while (eleccionOpcionMenu != 2);
     }
 
     static public void menuPartida(String nome, int dinero) {
-        if (rondaActual == limitRonda+1) {
-            
-        } else {
+        while (rondaActual <= limitRonda) {
 
             //Menú de partida
             if (!panelcreado) {
@@ -141,13 +141,12 @@ public class Ronda {
                     }
                     case 4 -> {
                         System.out.println("Saliendo de la partida... \n\n\n\n");
-                        menuPrincipal();
                     }
                     default ->
                         System.out.println("Elige un valor valido");
                 }
             } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4);
-            
+
         }
     }
 
@@ -179,7 +178,7 @@ public class Ronda {
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
                 if (comodinUsado == true) {
                     jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 } else {
                     finTurno();
                 }
@@ -194,7 +193,7 @@ public class Ronda {
                 }
                 toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
                 System.out.println(toret);
-                menuTrasGirarRuleta();
+                //menuTrasGirarRuleta();
             }
             case 3 -> {
                 toret = "pierde Turno";
@@ -219,7 +218,7 @@ public class Ronda {
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
                 } else if (acertado == true) {
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 }
 
             }
@@ -239,7 +238,7 @@ public class Ronda {
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
                 } else if (acertado == true) {
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 }
 
             }
@@ -259,7 +258,7 @@ public class Ronda {
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
                 } else if (acertado == true) {
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 }
 
             }
@@ -280,7 +279,7 @@ public class Ronda {
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
                 } else if (acertado == true) {
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 }
 
             }
@@ -301,7 +300,7 @@ public class Ronda {
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
                 } else if (acertado == true) {
-                    menuTrasGirarRuleta();
+                    //menuTrasGirarRuleta();
                 }
 
             }
@@ -349,7 +348,7 @@ public class Ronda {
             }
             case 4 -> {
                 System.out.println("Saliendo de la partida... \n\n\n\n");
-                menuPrincipal();
+                //menuPrincipal();
             }
             default ->
                 System.out.println("Elige un valor valido");
