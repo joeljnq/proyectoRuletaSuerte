@@ -93,12 +93,12 @@ public class Ronda {
             teclado.nextLine();
             //CIERRE DE MENU PRINCIPAL
             if (eleccionOpcionMenu == 1) {
-                menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+                menuPartida();
             }
         } while (eleccionOpcionMenu != 2);
     }
 
-    static public void menuPartida(String nome, int dinero) {
+    static public void menuPartida() {
         boolean terminarPartida = false;
         while (rondaActual <= limitRonda && !terminarPartida) {
 
@@ -112,7 +112,7 @@ public class Ronda {
 
             do {
                 System.out.println("\n              MENU\n----------------------------------\n");
-                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + nome + "\nDinero:" + dinero + "\n");
+                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
                 System.out.println("Que acción quieres llevar a cabo?\n");
                 System.out.println("1.Girar ruleta");
                 System.out.println("2.Resolver panel");
@@ -122,7 +122,6 @@ public class Ronda {
                 System.out.print("\t");
                 mostrarPanel();
                 System.out.println("");
-
                 eleccionOpcionMenu = teclado.nextInt();
                 teclado.nextLine();
                 switch (eleccionOpcionMenu) {
@@ -167,7 +166,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(8); //genera un numero random 
+        int aleatorio = rnd.nextInt(3); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -175,32 +174,37 @@ public class Ronda {
                 jugadores[turno].setDinero(0);
                 toret = "quiebra"; //Por ahora es similar a un pierde turno
                 System.out.println(toret);
-                Ronda.usarComodin();//Hay que reparar ese metodo!!
+              
 
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
-                if (comodinUsado == true) {
+                if (jugadores[turno].getComodin() >0) {
+                       Ronda.usarComodin();//Hay que reparar ese metodo!!
                     jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
+                   
                 } else {
                     finTurno();
                 }
 
             }
             case 2 -> {
-                caidoEnComodin = true;
+                toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+               consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
-                    if (comprobarConsonante()/*Poner aqui el char at en vez de comprobar consonante(?) JOEL*/ == frase.charAt(i)) {
+                    if (comprobarConsonante()== frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                     }
                 }
-                toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+                
                 System.out.println(toret);
             }
             case 3 -> {
                 toret = "pierde Turno";
                 System.out.println(toret);
-
-                finTurno();
-
+                if (jugadores[turno].getComodin()>0) {
+                    usarComodin();
+                }else  {
+                    finTurno(); 
+                }
             }
             case 10, 20, 50, 100, 200  -> {
                 boolean acertado = false; //Sirve para saber si en todo el for apareció al menos una coincidencia
@@ -312,9 +316,10 @@ public class Ronda {
             System.out.println("Responde con SI o NO");
             String pregunta = teclado.nextLine();
             if (pregunta.equalsIgnoreCase("si")) {
-                //         jugadores[turno].setTurno(true);
+               jugadores[turno].setComodin(jugadores[turno].getComodin()-1);
             } else {
-                //         jugadores[turno].setTurno(false);
+
+                finTurno();
             }
         }
         return "";
@@ -340,7 +345,7 @@ public class Ronda {
         resetearDatosExceptoGanador();
         GeneradorPanelUsuario();
         rondaActual++;
-        menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+        //menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
 }
