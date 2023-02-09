@@ -13,7 +13,6 @@ public class Ronda {
 
     /*
                 TODO LIST MÍNIMOS
-            -Hay que reparar el método Ronda.usarComodin() !!(por si acaso comprobar)
             -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite. //En proceso por Pedro
             -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
             -Solucionar limite de ronda
