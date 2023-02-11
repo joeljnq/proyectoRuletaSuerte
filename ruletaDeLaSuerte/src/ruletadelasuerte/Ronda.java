@@ -13,13 +13,7 @@ public class Ronda {
 
     /*
                 TODO LIST MÍNIMOS
-            -Acabar rondas,llevar un conteo de ellas y acabar la partida cuando se llega al limite. //En proceso por Pedro
-            -Cambiar el orden del dinero a: primero acertar la consonante y despúes añadir los pesos venezolanos.
-            -Solucionar limite de ronda
-            -Reparar el "Quiebra" (mirar los comentarios en el)
             -Reparar el que se pueda añadir una consonante ya añadida (y cobrar por ella)
-            -Tras comprobar el resolverVocal se muere el programa
-            -MUCHOS BUGS,AAAAA TODO ESTÁ EN LLAMAS!
     
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
@@ -81,7 +75,10 @@ public class Ronda {
 
     static public void menuPrincipal() {
         do {
+            panelcreado=false;
             resetearDatos();
+            turno=0;
+            
             //APERTURA DE MENÚ PRINCIPAL
             System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
             System.out.println("\n              MENU\n----------------------------------\n");
@@ -111,7 +108,7 @@ public class Ronda {
 
             do {
                 System.out.println("\n              MENU\n----------------------------------\n");
-                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\n");
+                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() +"\nComodines: " + jugadores[turno].getComodin()+ "\n");
                 System.out.println("Que acción quieres llevar a cabo?\n");
                 System.out.println("1.Girar ruleta");
                 System.out.println("2.Resolver panel");
@@ -122,7 +119,7 @@ public class Ronda {
                 mostrarPanel();
                 System.out.println("");
                 eleccionOpcionMenu = teclado.nextInt();
-                teclado.nextLine();
+                
                 switch (eleccionOpcionMenu) {
                     case 1 -> {
                         //EJECUTAR EL METODO TIRAR RULETA
@@ -165,7 +162,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(3); //genera un numero random 
+        int aleatorio = rnd.nextInt(8); //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -186,7 +183,8 @@ public class Ronda {
 
             }
             case 2 -> {
-                toret = "comodin"; //En este caso tiene q saltar el menú post girar ruleta o acaba turno?
+                toret = "comodin"; 
+                System.out.println(toret);
                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
                     if (comprobarConsonante()== frase.charAt(i)) {
@@ -194,7 +192,7 @@ public class Ronda {
                     }
                 }
                 
-                System.out.println(toret);
+                
             }
             case 3 -> {
                 toret = "pierde Turno";
@@ -207,7 +205,7 @@ public class Ronda {
             }
             case 10, 20, 50, 100, 200  -> {
                 boolean acertado = false; //Sirve para saber si en todo el for apareció al menos una coincidencia
-                toret = "Por 10 PESOS VENEZOLANOS...";
+                toret = "Por "+rule[aleatorio] +" PESOS VENEZOLANOS...";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
@@ -274,7 +272,7 @@ public class Ronda {
         String usuarioResuelvePanel = teclado.nextLine();
         boolean panelResuelto = false;
 
-        if (frase.equals(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
+        if (frase.equalsIgnoreCase(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
             panelResuelto = true;
             System.out.println("HAS RESUELTO EL PANEL");
             finRonda();
