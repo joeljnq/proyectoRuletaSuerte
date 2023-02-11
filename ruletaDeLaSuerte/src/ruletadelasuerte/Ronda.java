@@ -251,6 +251,7 @@ public class Ronda {
 
         char vocalElegidaPorUsuario = jugadores[turno].comprarVocal();
 
+        
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == vocalElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
                 panelUsuario[i] = vocalElegidaPorUsuario;
@@ -298,6 +299,30 @@ public class Ronda {
                 panelUsuario[i] = consonanteElegidaPorUsuario;
             }
         }
+        
+        /*      //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
+                boolean consonanteRepetida;
+        do {
+            consonanteRepetida = false;
+            for (int i = 0; i < frase.length(); i++) {
+                if (consonanteElegidaPorUsuario == panelUsuario[i]) {
+                    System.out.println("Esta vocal ya ha sido usada");
+                    consonanteRepetida = true;
+                }
+            }
+
+            if (consonanteRepetida == false) {
+                for (int i = 0; i < frase.length(); i++) {
+                    if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
+                        panelUsuario[i] = consonanteElegidaPorUsuario;
+                    }
+                }
+            }
+
+        } while (consonanteRepetida);
+        */
+        
+        
         return consonanteElegidaPorUsuario;
     }
 
