@@ -84,7 +84,6 @@ public class Ronda {
             System.out.println("\n              MENU\n----------------------------------\n");
             System.out.println("1.Iniciar partida");
             System.out.println("2.Salir");
-            System.out.println("3.Creditos(en mantenimiento)");
             eleccionOpcionMenu = teclado.nextInt();
             teclado.nextLine();
             //CIERRE DE MENU PRINCIPAL
