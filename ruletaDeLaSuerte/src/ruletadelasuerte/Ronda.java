@@ -90,11 +90,8 @@ public class Ronda {
                 menuPartida();
             }else if(eleccionOpcionMenu==2){
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
-                System.out.println("1. Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
-                System.out.println("2. Pedro menos Listo Campelo rico: " + "\t https://github.com/WorkPedroCampelo");
-            }else if( eleccionOpcionMenu==3){
-                
-                cambiarNombre();
+                System.out.println("-Joel Ninahuaman Quintanilla: " + "\t https://github.com/joeljnq/");
+                System.out.println("-Pedro Campelo Rico: " + "\t\t https://github.com/WorkPedroCampelo");
             }
         } while (eleccionOpcionMenu != 2);
     }
@@ -298,14 +295,14 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-
+/*
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
                 panelUsuario[i] = consonanteElegidaPorUsuario;
             }
         }
-        
-        /*      //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
+        */
+             //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
                 boolean consonanteRepetida;
         do {
             consonanteRepetida = false;
@@ -325,7 +322,7 @@ public class Ronda {
             }
 
         } while (consonanteRepetida);
-        */
+        
         
         
         return consonanteElegidaPorUsuario;
