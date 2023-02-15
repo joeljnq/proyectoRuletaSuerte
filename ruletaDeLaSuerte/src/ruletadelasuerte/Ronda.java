@@ -91,6 +91,9 @@ public class Ronda {
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
                 System.out.println("1. Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
                 System.out.println("2. Pedro menos Listo Campelo rico: " + "\t https://github.com/WorkPedroCampelo");
+            }else if(eleccionOpcionMenu == 3){
+                cambiarNombre();
+                
             }
         } while (eleccionOpcionMenu != 2);
     }
