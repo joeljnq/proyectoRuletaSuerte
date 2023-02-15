@@ -26,7 +26,6 @@ public class Ronda {
             -IgnoreCase para la resolución del enigma/vocal/consonante
             -Mostrar el ganador de la partida
             
- 
      */
     final static int limitRonda = 3; //El limite de rondas de una partida
     public static String frase = "";
@@ -294,14 +293,14 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-
+/*
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
                 panelUsuario[i] = consonanteElegidaPorUsuario;
             }
         }
-        
-        /*      //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
+        */
+              //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
                 boolean consonanteRepetida;
         do {
             consonanteRepetida = false;
@@ -321,7 +320,7 @@ public class Ronda {
             }
 
         } while (consonanteRepetida);
-        */
+        
         
         
         return consonanteElegidaPorUsuario;

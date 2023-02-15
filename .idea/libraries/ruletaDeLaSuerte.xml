@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ruletaDeLaSuerte">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/ruletaDeLaSuerte/dist/ruletaDeLaSuerte.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
