@@ -47,7 +47,6 @@ public class Ronda {
         if (turno >= jugadores.length) {
             turno = 0;
         }
-        //menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
     public static String crearFrase() {
@@ -88,7 +87,7 @@ public class Ronda {
             teclado.nextLine();
             //CIERRE DE MENU PRINCIPAL
             if (eleccionOpcionMenu == 1) {
-                menuPartida();
+              menuPartida();
             }else if(eleccionOpcionMenu==2){
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
                 System.out.println("-Joel Ninahuaman Quintanilla: " + "\t https://github.com/joeljnq/");
@@ -370,7 +369,6 @@ public class Ronda {
         resetearDatosExceptoGanador();
         GeneradorPanelUsuario();
         rondaActual++;
-        //menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
     }
 
 }
