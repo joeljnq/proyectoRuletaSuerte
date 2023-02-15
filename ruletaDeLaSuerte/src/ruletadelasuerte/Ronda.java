@@ -136,7 +136,7 @@ public class Ronda {
                     }
                     case 3 -> {
                         System.out.println("\n\nComprando vocal...");
-                        System.out.println(comprobarVocal()); //TODO Pedro por alguna razon al comprar vocal, no se guarda el resultado en PanelUsuario[]
+                        System.out.println(comprobarVocal());
                     }
                     case 4 -> {
                         System.out.println("Saliendo de la partida... \n\n\n\n");
@@ -296,18 +296,22 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-/*
+        boolean consonanteRepetida=false;
+
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
-                panelUsuario[i] = consonanteElegidaPorUsuario;
+                if (panelUsuario[i]==frase.charAt(i)) {
+                    panelUsuario[i] = consonanteElegidaPorUsuario;
+                }else System.out.println("Esta letra ya fue usada");
             }
         }
-        */
-              //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
-                boolean consonanteRepetida;
+
+            /*  //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
+
         do {
-            consonanteRepetida = false;
+
             for (int i = 0; i < frase.length(); i++) {
+                consonanteRepetida = false;
                 if (consonanteElegidaPorUsuario == panelUsuario[i]) {
                     System.out.println("Esta vocal ya ha sido usada");
                     consonanteRepetida = true;
@@ -324,7 +328,7 @@ public class Ronda {
 
         } while (consonanteRepetida);
         
-        
+        */
         
         return consonanteElegidaPorUsuario;
     }
