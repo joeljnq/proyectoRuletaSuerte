@@ -16,7 +16,7 @@ public class Jugador {
     public Jugador(String nombre) {
         this.nombre = nombre;
        
-    }
+    } 
 
     /**
      * esta para modificar el numero de comodines en caso de que le toque en la
@@ -31,7 +31,7 @@ public class Jugador {
     public void setDinero(int dinero) {
         this.dinero = dinero;
     }
-
+  
     /**
      * cambia en caso de que el jugador no acierte la consonante o la vocal o le
      * toque pierde turno
@@ -52,8 +52,14 @@ public class Jugador {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
 
+
+    
+    
     /**
      * Esta función compra una vocal al ser llamada y se cumplen con el
      * requerimiento de tener 50 dineros

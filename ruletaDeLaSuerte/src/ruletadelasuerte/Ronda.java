@@ -18,7 +18,6 @@ public class Ronda {
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
-            -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
             -Revisar las variables qu eestán en static 
             -Añadir la posibilidad de poner cantidad y nombre a los jugadores de la partida
             -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
@@ -369,6 +368,26 @@ public class Ronda {
         resetearDatosExceptoGanador();
         GeneradorPanelUsuario();
         rondaActual++;
+    }
+    
+    public static void cambiarNombre(){
+        String nome;
+        System.out.println("pulsa 1. si quieres cambiar el nombre del jugador \n pulsa 2. si quieres camiar el nombre del jugador 2");
+        int eleccionNombre  = teclado.nextInt();
+        teclado.nextLine();
+        switch(eleccionNombre){
+            case 1 ->{
+                System.out.println("Escribe el nombre");
+                jugadores[turno].setNombre(nome=teclado.nextLine());
+            }
+            case 2 ->{
+                turno += 1;
+                System.out.println("Escribe el nombre");
+                jugadores[turno].setNombre(nome = teclado.nextLine());
+                turno = 0;
+            }
+        }
+        
     }
 
 }
