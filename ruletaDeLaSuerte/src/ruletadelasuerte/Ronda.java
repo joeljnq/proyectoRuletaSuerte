@@ -18,7 +18,6 @@ public class Ronda {
                 TODO EXTRAS
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
-            -Poner una opción para los creditos en la que se digan los creadores, página de github y demás
             -Revisar las variables qu eestán en static 
             -Añadir la posibilidad de poner cantidad y nombre a los jugadores de la partida
             -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
@@ -93,6 +92,9 @@ public class Ronda {
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
                 System.out.println("1. Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
                 System.out.println("2. Pedro menos Listo Campelo rico: " + "\t https://github.com/WorkPedroCampelo");
+            }else if( eleccionOpcionMenu==3){
+                
+                cambiarNombre();
             }
         } while (eleccionOpcionMenu != 2);
     }
@@ -371,6 +373,26 @@ public class Ronda {
         GeneradorPanelUsuario();
         rondaActual++;
         //menuPartida(jugadores[turno].getNombre(), jugadores[turno].getDinero());
+    }
+    
+    public static void cambiarNombre(){
+        String nome;
+        System.out.println("pulsa 1. si quieres cambiar el nombre del jugador \n pulsa 2. si quieres camiar el nombre del jugador 2");
+        int eleccionNombre  = teclado.nextInt();
+        teclado.nextLine();
+        switch(eleccionNombre){
+            case 1 ->{
+                System.out.println("Escribe el nombre");
+                jugadores[turno].setNombre(nome=teclado.nextLine());
+            }
+            case 2 ->{
+                turno += 1;
+                System.out.println("Escribe el nombre");
+                jugadores[turno].setNombre(nome = teclado.nextLine());
+                turno = 0;
+            }
+        }
+        
     }
 
 }
