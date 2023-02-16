@@ -19,7 +19,6 @@ public class Ronda {
             -Reorganizar ruleta(Igual su existencia es innecesaria?)
             -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
             -Revisar las variables qu eestán en static 
-            -Añadir la posibilidad de poner cantidad y nombre a los jugadores de la partida
             -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
             -Hacer array de consonantes comprobarConsonante en la clase jugador
             -Revisar el ambito de las clases (si deberian ser privadas/publicas...)
@@ -27,7 +26,7 @@ public class Ronda {
             -Mostrar el ganador de la partida
             
      */
-    final static int limitRonda = 3; //El limite de rondas de una partida
+    final static int limitRonda = 4; //El limite de rondas de una partida
     public static String frase = "";
     public static char[] panelUsuario; //Panel Usuario es el panel que se le mostrará al usuario por consola
     static boolean panelcreado = false;
@@ -72,10 +71,10 @@ public class Ronda {
 
     static public void menuPrincipal() {
         do {
-            panelcreado=false;
+            panelcreado = false;
             resetearDatos();
-            turno=0;
-            
+            turno = 0;
+
             //APERTURA DE MENÚ PRINCIPAL
             System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
             System.out.println("\n              MENU\n----------------------------------\n");
@@ -85,19 +84,18 @@ public class Ronda {
             teclado.nextLine();
             //CIERRE DE MENU PRINCIPAL
             if (eleccionOpcionMenu == 1) {
-              menuPartida();
-            }else if(eleccionOpcionMenu==2){
+                menuPartida();
+            } else if (eleccionOpcionMenu == 2) {
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
                 System.out.println("1. Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
                 System.out.println("2. Pedro menos Listo Campelo rico: " + "\t https://github.com/WorkPedroCampelo");
-            }else if(eleccionOpcionMenu == 3){
-                cambiarNombre();
-                
             }
+
         } while (eleccionOpcionMenu != 2);
     }
 
     static public void menuPartida() {
+
         boolean terminarPartida = false;
         while (rondaActual <= limitRonda && !terminarPartida) {
 
@@ -110,8 +108,13 @@ public class Ronda {
             }
 
             do {
+                 if (rondaActual == 4) {
+                    ganadorPartida();
+                    finRonda();
+                }
+
                 System.out.println("\n              MENU\n----------------------------------\n");
-                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() +"\nComodines: " + jugadores[turno].getComodin()+ "\n");
+                System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\nComodines: " + jugadores[turno].getComodin() + "\n");
                 System.out.println("Que acción quieres llevar a cabo?\n");
                 System.out.println("1.Girar ruleta");
                 System.out.println("2.Resolver panel");
@@ -122,7 +125,7 @@ public class Ronda {
                 mostrarPanel();
                 System.out.println("");
                 eleccionOpcionMenu = teclado.nextInt();
-                
+               
                 switch (eleccionOpcionMenu) {
                     case 1 -> {
                         //EJECUTAR EL METODO TIRAR RULETA
@@ -173,42 +176,40 @@ public class Ronda {
                 jugadores[turno].setDinero(0);
                 toret = "quiebra"; //Por ahora es similar a un pierde turno
                 System.out.println(toret);
-              
 
                 //Este if sería lo que hipoteticamente habría que hacer cuando se repare el usarComodín()
-                if (jugadores[turno].getComodin() >0) {
-                       Ronda.usarComodin();//Hay que reparar ese metodo!!
+                if (jugadores[turno].getComodin() > 0) {
+                    Ronda.usarComodin();//Hay que reparar ese metodo!!
                     jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
-                   
+
                 } else {
                     finTurno();
                 }
 
             }
             case 2 -> {
-                toret = "comodin"; 
+                toret = "comodin";
                 System.out.println(toret);
-               consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
+                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
-                    if (comprobarConsonante()== frase.charAt(i)) {
+                    if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
                     }
                 }
-                
-                
+
             }
             case 3 -> {
                 toret = "pierde Turno";
                 System.out.println(toret);
-                if (jugadores[turno].getComodin()>0) {
+                if (jugadores[turno].getComodin() > 0) {
                     usarComodin();
-                }else  {
-                    finTurno(); 
+                } else {
+                    finTurno();
                 }
             }
-            case 10, 20, 50, 100, 200  -> {
+            case 10, 20, 50, 100, 200 -> {
                 boolean acertado = false; //Sirve para saber si en todo el for apareció al menos una coincidencia
-                toret = "Por "+rule[aleatorio] +" PESOS VENEZOLANOS...";
+                toret = "Por " + rule[aleatorio] + " PESOS VENEZOLANOS...";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
                 for (int i = 0; i < frase.length(); i++) {
@@ -221,7 +222,7 @@ public class Ronda {
 
                     System.out.println("La consonante no se encuentra en el panel");
                     finTurno();
-                } 
+                }
 
             }
         }
@@ -254,7 +255,6 @@ public class Ronda {
 
         char vocalElegidaPorUsuario = jugadores[turno].comprarVocal();
 
-        
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == vocalElegidaPorUsuario) { //Este if comprueba si la vocal está en la frase, si lo está, aplica al panel usuario esta vocal
                 panelUsuario[i] = vocalElegidaPorUsuario;
@@ -296,17 +296,19 @@ public class Ronda {
     Si ves esto Joel, hola, si no entiendes mandame un wass 
      */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
-        boolean consonanteRepetida=false;
+        boolean consonanteRepetida = false;
 
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
-                if (panelUsuario[i]==frase.charAt(i)) {
+                if (panelUsuario[i] == frase.charAt(i)) {
                     panelUsuario[i] = consonanteElegidaPorUsuario;
-                }else System.out.println("Esta letra ya fue usada");
+                } else {
+                    System.out.println("Esta letra ya fue usada");
+                }
             }
         }
 
-            /*  //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
+        /*  //Este codigo debería comprobar si se repite la letra pero queda en un bucle ininito, comprobar :)
 
         do {
 
@@ -328,8 +330,7 @@ public class Ronda {
 
         } while (consonanteRepetida);
         
-        */
-        
+         */
         return consonanteElegidaPorUsuario;
     }
 
@@ -345,7 +346,7 @@ public class Ronda {
             System.out.println("Responde con SI o NO");
             String pregunta = teclado.nextLine();
             if (pregunta.equalsIgnoreCase("si")) {
-               jugadores[turno].setComodin(jugadores[turno].getComodin()-1);
+                jugadores[turno].setComodin(jugadores[turno].getComodin() - 1);
             } else {
 
                 finTurno();
@@ -375,25 +376,41 @@ public class Ronda {
         GeneradorPanelUsuario();
         rondaActual++;
     }
-    
-    public static void cambiarNombre(){
+
+    public static void cambiarNombre() {
         String nome;
         System.out.println("pulsa 1. si quieres cambiar el nombre del jugador \n pulsa 2. si quieres camiar el nombre del jugador 2");
-        int eleccionNombre  = teclado.nextInt();
+        int eleccionNombre = teclado.nextInt();
         teclado.nextLine();
-        switch(eleccionNombre){
-            case 1 ->{
+        switch (eleccionNombre) {
+            case 1 -> {
                 System.out.println("Escribe el nombre");
-                jugadores[turno].setNombre(nome=teclado.nextLine());
+                jugadores[turno].setNombre(nome = teclado.nextLine());
             }
-            case 2 ->{
+            case 2 -> {
                 turno += 1;
                 System.out.println("Escribe el nombre");
                 jugadores[turno].setNombre(nome = teclado.nextLine());
                 turno = 0;
             }
         }
-        
+
+    }
+
+    public static void ganadorPartida() {
+
+        if (rondaActual == 4) {
+            if (jugadores[0].getDinero() == jugadores[1].getDinero()) {
+                System.out.println("EMPATEEEEEEEE!!!");
+            }
+
+            if (jugadores[0].getDinero() > jugadores[1].getDinero()) {
+                System.out.println("Ganador: " + jugadores[0].getNombre());
+            } else {
+                System.out.println("Ganador: " + jugadores[1].getNombre());
+            }
+        }
+
     }
 
 }
