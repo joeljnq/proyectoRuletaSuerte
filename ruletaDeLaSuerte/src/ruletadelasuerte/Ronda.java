@@ -105,10 +105,6 @@ public class Ronda {
             }
 
             do {
-                 if (rondaActual == 4) {
-                    ganadorPartida();
-                    finRonda();
-                }
 
                 System.out.println("\n              MENU\n----------------------------------\n");
                 System.out.println("Ronda:" + Ronda.rondaActual + "\n\nJugador:" + jugadores[turno].getNombre() + "\nDinero:" + jugadores[turno].getDinero() + "\nComodines: " + jugadores[turno].getComodin() + "\n");
@@ -122,7 +118,7 @@ public class Ronda {
                 mostrarPanel();
                 System.out.println("");
                 eleccionOpcionMenu = teclado.nextInt();
-               
+
                 switch (eleccionOpcionMenu) {
                     case 1 -> {
                         //EJECUTAR EL METODO TIRAR RULETA
@@ -142,11 +138,15 @@ public class Ronda {
                         System.out.println("Saliendo de la partida... \n\n\n\n");
                         terminarPartida = true;
                     }
-                    default -> System.out.println("Elige un valor valido");
+                    default ->
+                        System.out.println("Elige un valor valido");
                 }
             } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4); //Repetir mientras opción no válida
-
+            if (rondaActual == limitRonda+1) {
+                ganadorPartida();
+            }
         }
+
     }
 
     /**
@@ -204,7 +204,6 @@ public class Ronda {
                     finTurno();
                     System.out.println("Consonante repetida");
                 }
-
 
             }
             case 3 -> {
@@ -318,10 +317,8 @@ public class Ronda {
         for (int i = 0; i < frase.length(); i++) {
             if (frase.charAt(i) == consonanteElegidaPorUsuario) { //Este if comprueba si la consonante está en la frase, si lo está, aplica al panel usuario esta vocal
 
-
             }
         }
-
 
         return consonanteElegidaPorUsuario;
     }
@@ -391,18 +388,15 @@ public class Ronda {
 
     public static void ganadorPartida() {
 
-        if (rondaActual == 4) {
-            if (jugadores[0].getDinero() == jugadores[1].getDinero()) {
-                System.out.println("EMPATEEEEEEEE!!!");
-            }
-
-            if (jugadores[0].getDinero() > jugadores[1].getDinero()) {
-                System.out.println("Ganador: " + jugadores[0].getNombre());
-            } else {
-                System.out.println("Ganador: " + jugadores[1].getNombre());
-            }
+        if (jugadores[0].getDinero() == jugadores[1].getDinero()) {
+            System.out.println("EMPATEEEEEEEE!!!");
         }
 
+        if (jugadores[0].getDinero() > jugadores[1].getDinero()) {
+            System.out.println("Ganador: " + jugadores[0].getNombre());
+        } else {
+            System.out.println("Ganador: " + jugadores[1].getNombre());
+        }
     }
 
 }
