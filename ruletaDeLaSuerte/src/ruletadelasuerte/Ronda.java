@@ -11,18 +11,13 @@ public class Ronda {
 
 
     /*
-                TODO LIST MÍNIMOS
-            -Reparar el que se pueda añadir una consonante ya añadida (y cobrar por ella)
+
+            -TODO Reparar el que se pueda añadir una consonante ya añadida en comodín
     
-                TODO EXTRAS
-            -Reorganizar ruleta(Igual su existencia es innecesaria?)
-            -Reorganizar menú para que no quede tan chueco al usar comprarVocal()
-            -Revisar las variables qu eestán en static 
-            -Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
-            -Hacer array de consonantes comprobarConsonante en la clase jugador
-            -Revisar el ambito de las clases (si deberian ser privadas/publicas...)
-            -IgnoreCase para la resolución del enigma/vocal/consonante
-            -Mostrar el ganador de la partida
+
+            -TODO Reorganizar ruleta(Igual su existencia es innecesaria?)
+            -TODO Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
+
             
      */
     final static int limitRonda = 4; //El limite de rondas de una partida
@@ -189,13 +184,25 @@ public class Ronda {
 
             }
             case 2 -> {
+                boolean consonanteRepetida = false;
                 toret = "comodin";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
+
                 for (int i = 0; i < frase.length(); i++) {
+                    if (frase.charAt(i) == panelUsuario[i]) {
+                        consonanteRepetida = true;
+                    }
                     if (comprobarConsonante() == frase.charAt(i)) {
                         jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+                        panelUsuario[i] = consonanteElegidaPorUsuario;
+                        consonanteRepetida=false;
                     }
+
+                }
+                if (consonanteRepetida) {//TODO No se porqué esto se ejecuta siempre
+                    finTurno();
+                    System.out.println("Consonante repetida");
                 }
 
 
@@ -287,7 +294,7 @@ public class Ronda {
         String usuarioResuelvePanel = teclado.nextLine();
         boolean panelResuelto = false;
 
-        if (frase.equalsIgnoreCase(usuarioResuelvePanel)) { //TODO Pedro Aqui por alguna razon no funciona esta wea, echarmle un ojo
+        if (frase.equalsIgnoreCase(usuarioResuelvePanel)) {
             panelResuelto = true;
             System.out.println("HAS RESUELTO EL PANEL");
             finRonda();
