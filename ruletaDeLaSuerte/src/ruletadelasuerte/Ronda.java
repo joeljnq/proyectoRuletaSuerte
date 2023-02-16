@@ -198,28 +198,6 @@ public class Ronda {
                     }
                 }
 
-            }
-            case 3 -> {
-                toret = "pierde Turno";
-                System.out.println(toret);
-                if (jugadores[turno].getComodin() > 0) {
-                    usarComodin();
-                } else {
-                    finTurno();
-                }
-            }
-            case 10, 20, 50, 100, 200 -> {
-                boolean acertado = false; //Sirve para saber si en todo el for apareció al menos una coincidencia
-                toret = "Por " + rule[aleatorio] + " PESOS VENEZOLANOS...";
-                System.out.println(toret);
-                consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
-                for (int i = 0; i < frase.length(); i++) {
-                    if (comprobarConsonante() == frase.charAt(i)) {
-                        jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
-                        panelUsuario[i] = consonanteElegidaPorUsuario;
-                    }
-                }
-
 
             }
             case 3 -> {
