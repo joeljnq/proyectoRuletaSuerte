@@ -164,7 +164,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(8); //genera un numero random 
+        int aleatorio = rnd.nextInt(1)+1; //genera un numero random 
 
         switch (rule[aleatorio]) {
             case 1 -> {
@@ -184,25 +184,36 @@ public class Ronda {
 
             }
             case 2 -> {
-                boolean consonanteRepetida = false;
+                boolean consonanteRepetida = false; //TODO ESTE CASE ESTÁ ROTO, NO COMPRUEBA SI ES CORRECTA LA CONSONANTE (PERO LO DE VER 
+//              SI ES REPETIDA VA DPM :D)
+                boolean fin=false;
                 toret = "comodin";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
-                for (int i = 0; i < frase.length(); i++) {
-                    if (frase.charAt(i) == panelUsuario[i]) {
+                for (int i = 0; i < frase.length()&& fin==false; i++) {
+                    
+                    
+                    if (consonanteElegidaPorUsuario== panelUsuario[i]  ) {
                         consonanteRepetida = true;
+                        fin=true;
+                        
                     }
-                    if (comprobarConsonante() == frase.charAt(i)) {
-                        jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
-                        panelUsuario[i] = consonanteElegidaPorUsuario;
-                        consonanteRepetida=false;
+                    if (consonanteElegidaPorUsuario == frase.charAt(i) && fin==false) {
+                        if (consonanteRepetida==false) {
+                           jugadores[turno].setComodin(jugadores[turno].getComodin() + 1); 
+                           panelUsuario[i] = consonanteElegidaPorUsuario;
+                        }
+                        
+                        
+                        
+                        
                     }
-
                 }
-                if (consonanteRepetida) {//TODO No se porqué esto se ejecuta siempre
-                    finTurno();
+                if (fin) {
                     System.out.println("Consonante repetida");
+                    finTurno();
+                    
                 }
 
             }
