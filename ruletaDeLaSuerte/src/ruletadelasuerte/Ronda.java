@@ -43,7 +43,7 @@ public class Ronda {
     public static String crearFrase() {
         int selectorFrase = 0;
         Random rnd = new Random();
-        selectorFrase = rnd.nextInt(1);
+        selectorFrase = rnd.nextInt(4);
         switch (selectorFrase) {
             case 0:
                 //frase = "La paciencia es una virtud";
@@ -58,6 +58,25 @@ public class Ronda {
             case 3:
                 frase = "La prisa es la enemiga de la perfección";
                 break;
+            case 4:
+                frase="En boca cerrada no entran moscas";
+                break;
+            case 5:
+                frase="No dejes para mañana lo que puedas hacer hoy";
+                break;
+            case 6:
+                frase="Más vale tarde que nunca";
+                break;
+            case 7:
+                frase="No por mucho madrugar amanece más temprano";
+                break;
+            case 8:
+                frase="No hay peor sordo que el que no quiere oír";
+                break;
+            case 9:
+                frase="Ojos que no ven, corazón que no siente";
+                break;
+
 
         }
         return frase;
@@ -164,7 +183,7 @@ public class Ronda {
         int[] rule = Ruleta.rule();
         String toret = "";
         Random rnd = new Random();
-        int aleatorio = rnd.nextInt(1)+1; //genera un numero random 
+        int aleatorio = rnd.nextInt(8); //genera un numero random
 
         switch (rule[aleatorio]) {
             case 1 -> {
