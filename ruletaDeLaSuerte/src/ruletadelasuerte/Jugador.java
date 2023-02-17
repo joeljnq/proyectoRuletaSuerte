@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Jugador {
 
     Scanner teclado = new Scanner(System.in, "ISO-8859-1");
-    private static int comodin = 0; // indica el numero de comodines
+    private int comodin = 0; // indica el numero de comodines
     private int dinero = 100;//Inicializado a 100 para hacer pruebas
     private String nombre;
 
@@ -36,7 +36,7 @@ public class Jugador {
      * cambia en caso de que el jugador no acierte la consonante o la vocal o le
      * toque pierde turno
      *
-     * @param turno
+     * @param
      */
 
 

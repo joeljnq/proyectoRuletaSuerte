@@ -184,8 +184,7 @@ public class Ronda {
 
             }
             case 2 -> {
-                boolean consonanteRepetida = false; //TODO ESTE CASE ESTÁ ROTO, NO COMPRUEBA SI ES CORRECTA LA CONSONANTE (PERO LO DE VER 
-//              SI ES REPETIDA VA DPM :D)
+                boolean consonanteRepetida = false; //TODO ESTE CASE ESTÁ ROTO, NO COMPRUEBA SI ES CORRECTA LA CONSONANTE (PERO LO DE VER SI ES REPETIDA VA DPM :D)
                 boolean acertado = false;
                 boolean fin=false;
                 toret = "comodin";
