@@ -186,30 +186,32 @@ public class Ronda {
             case 2 -> {
                 boolean consonanteRepetida = false; //TODO ESTE CASE ESTÁ ROTO, NO COMPRUEBA SI ES CORRECTA LA CONSONANTE (PERO LO DE VER 
 //              SI ES REPETIDA VA DPM :D)
+                boolean acertado = false;
                 boolean fin=false;
                 toret = "comodin";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
                 for (int i = 0; i < frase.length()&& fin==false; i++) {
-                    
-                    
+
                     if (consonanteElegidaPorUsuario== panelUsuario[i]  ) {
-                        consonanteRepetida = true;
                         fin=true;
-                        
                     }
+
                     if (consonanteElegidaPorUsuario == frase.charAt(i) && fin==false) {
-                        if (consonanteRepetida==false) {
                            jugadores[turno].setComodin(jugadores[turno].getComodin() + 1); 
                            panelUsuario[i] = consonanteElegidaPorUsuario;
-                        }
-                        
-                        
-                        
-                        
+                           acertado=true;
+
                     }
+
                 }
+
+                if (acertado == false && !fin) {
+                    System.out.println("La consonante no se encuentra en el panel");
+                    finTurno();
+                }
+
                 if (fin) {
                     System.out.println("Consonante repetida");
                     finTurno();
