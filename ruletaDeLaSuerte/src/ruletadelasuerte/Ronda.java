@@ -9,17 +9,6 @@ import javax.print.attribute.standard.Finishings;
  */
 public class Ronda {
 
-
-    /*
-
-            -TODO Reparar el que se pueda añadir una consonante ya añadida en comodín
-    
-
-            -TODO Reorganizar ruleta(Igual su existencia es innecesaria?)
-            -TODO Revisar comentarios y borrar o crear los necesarios para el entendimiento del código en un futuro
-
-            
-     */
     final static int limitRonda = 4; //El limite de rondas de una partida
     public static String frase = "";
     public static char[] panelUsuario; //Panel Usuario es el panel que se le mostrará al usuario por consola
@@ -46,7 +35,6 @@ public class Ronda {
         selectorFrase = rnd.nextInt(4);
         switch (selectorFrase) {
             case 0:
-                //frase = "La paciencia es una virtud";
                 frase = "hola mundo";
                 break;
             case 1:
@@ -59,24 +47,23 @@ public class Ronda {
                 frase = "La prisa es la enemiga de la perfección";
                 break;
             case 4:
-                frase="En boca cerrada no entran moscas";
+                frase = "En boca cerrada no entran moscas";
                 break;
             case 5:
-                frase="No dejes para mañana lo que puedas hacer hoy";
+                frase = "No dejes para mañana lo que puedas hacer hoy";
                 break;
             case 6:
-                frase="Más vale tarde que nunca";
+                frase = "Más vale tarde que nunca";
                 break;
             case 7:
-                frase="No por mucho madrugar amanece más temprano";
+                frase = "La paciencia es una virtud";
                 break;
             case 8:
-                frase="No hay peor sordo que el que no quiere oír";
+                frase = "No hay peor sordo que el que no quiere oír";
                 break;
             case 9:
-                frase="Ojos que no ven, corazón que no siente";
+                frase = "Ojos que no ven, corazón que no siente";
                 break;
-
 
         }
         return frase;
@@ -88,15 +75,15 @@ public class Ronda {
             resetearDatos();
             turno = 0;
 
-            //APERTURA DE MENÚ PRINCIPAL
             System.out.println("Bienvenido a LA RULETA DE LA SUERTE");
             System.out.println("\n              MENU\n----------------------------------\n");
             System.out.println("1.Iniciar partida");
             System.out.println("2.Salir");
             eleccionOpcionMenu = teclado.nextInt();
             teclado.nextLine();
-            //CIERRE DE MENU PRINCIPAL
+
             if (eleccionOpcionMenu == 1) {
+                cambiarNombre();
                 menuPartida();
             } else if (eleccionOpcionMenu == 2) {
                 System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
@@ -115,7 +102,6 @@ public class Ronda {
         boolean terminarPartida = false;
         while (rondaActual <= limitRonda && !terminarPartida) {
 
-            //Menú de partida
             if (!panelcreado) {
                 crearFrase();
                 panelUsuario = new char[frase.length()];
@@ -140,7 +126,6 @@ public class Ronda {
 
                 switch (eleccionOpcionMenu) {
                     case 1 -> {
-                        //EJECUTAR EL METODO TIRAR RULETA
                         Ronda.girarRuleta();
                     }
                     case 2 -> {
@@ -161,12 +146,15 @@ public class Ronda {
                         System.out.println("Elige un valor valido");
                 }
             } while (eleccionOpcionMenu < 1 || eleccionOpcionMenu > 4); //Repetir mientras opción no válida
-            if (rondaActual == limitRonda+1) {
+            if (rondaActual == limitRonda + 1) {
                 ganadorPartida();
             }
         }
 
     }
+
+    public static char consonanteElegidaPorUsuario;
+    static boolean caidoEnComodin = false;
 
     /**
      * Este metodo se utiliza para girar la ruleta mediante un numero aleatorio
@@ -174,9 +162,6 @@ public class Ronda {
      *
      * @return
      */
-    public static char consonanteElegidaPorUsuario;
-    static boolean caidoEnComodin = false;
-
     public static void girarRuleta() {
         boolean comodinUsado = false;
 
@@ -203,23 +188,23 @@ public class Ronda {
 
             }
             case 2 -> {
-                boolean consonanteRepetida = false; //TODO ESTE CASE ESTÁ ROTO, NO COMPRUEBA SI ES CORRECTA LA CONSONANTE (PERO LO DE VER SI ES REPETIDA VA DPM :D)
+                boolean consonanteRepetida = false;
                 boolean acertado = false;
-                boolean fin=false;
+                boolean fin = false;
                 toret = "comodin";
                 System.out.println(toret);
                 consonanteElegidaPorUsuario = jugadores[turno].decirConsonante();
 
-                for (int i = 0; i < frase.length()&& fin==false; i++) {
+                for (int i = 0; i < frase.length() && fin == false; i++) {
 
-                    if (consonanteElegidaPorUsuario== panelUsuario[i]  ) {
-                        fin=true;
+                    if (consonanteElegidaPorUsuario == panelUsuario[i]) {
+                        fin = true;
                     }
 
-                    if (consonanteElegidaPorUsuario == frase.charAt(i) && fin==false) {
-                           jugadores[turno].setComodin(jugadores[turno].getComodin() + 1); 
-                           panelUsuario[i] = consonanteElegidaPorUsuario;
-                           acertado=true;
+                    if (consonanteElegidaPorUsuario == frase.charAt(i) && fin == false) {
+                        jugadores[turno].setComodin(jugadores[turno].getComodin() + 1);
+                        panelUsuario[i] = consonanteElegidaPorUsuario;
+                        acertado = true;
 
                     }
 
@@ -233,7 +218,7 @@ public class Ronda {
                 if (fin) {
                     System.out.println("Consonante repetida");
                     finTurno();
-                    
+
                 }
 
             }
@@ -247,7 +232,7 @@ public class Ronda {
                 }
             }
             case 10, 20, 50, 100, 200 -> {
-                boolean acertado = false; //Sirve para saber si en to-do el for apareció al menos una coincidencia
+                boolean acertado = false;
                 boolean consonanteRepetida = false;
                 toret = "Por " + rule[aleatorio] + " PESOS VENEZOLANOS...";
                 System.out.println(toret);
@@ -312,9 +297,6 @@ public class Ronda {
 
     }
 
-    /**
-     * Este solo sirve para ver el panel en cada momento y hacer debug
-     */
     public static void mostrarPanel() {
         System.out.print(panelUsuario);
     }
@@ -336,13 +318,6 @@ public class Ronda {
         return panelResuelto;
     }
 
-    /*Segun mi logica (Y lo apunto para que no se me olvide) deberia haber un array
-    panel, y la frase completa en la variable frase. El array está lleno de "_" salvo los espacios,
-    así para enseñar si una vocal/consonante está dentro del panel, solo habría que bucar en "frase"
-    la posicion del caracter donde se encontró y que sobre escriba el "_" que hay en la misma posición en el array
-    con la letra que le corresponda.
-    Si ves esto Joel, hola, si no entiendes mandame un wass 
-     */
     public static char comprobarConsonante() { //Este metodo pide la consonante y la comprueba a la vez
 
         for (int i = 0; i < frase.length(); i++) {
@@ -397,23 +372,12 @@ public class Ronda {
         rondaActual++;
     }
 
-    public static void cambiarNombre() {
+    public static void cambiarNombre() { //Joel toqué esto a ultima hora para darle nombre a los jugadores
         String nome;
-        System.out.println("pulsa 1. si quieres cambiar el nombre del jugador \n pulsa 2. si quieres camiar el nombre del jugador 2");
-        int eleccionNombre = teclado.nextInt();
-        teclado.nextLine();
-        switch (eleccionNombre) {
-            case 1 -> {
-                System.out.println("Escribe el nombre");
-                jugadores[turno].setNombre(nome = teclado.nextLine());
-            }
-            case 2 -> {
-                turno += 1;
-                System.out.println("Escribe el nombre");
-                jugadores[turno].setNombre(nome = teclado.nextLine());
-                turno = 0;
-            }
-        }
+        System.out.println("Nombre del jugador 1 : ");
+        jugadores[0].setNombre(nome = teclado.nextLine());
+        System.out.println("Nombre del jugador 2 : ");
+        jugadores[1].setNombre(nome = teclado.nextLine());
 
     }
 
