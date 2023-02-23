@@ -62,7 +62,7 @@ public class Ronda {
                 frase = "No hay peor sordo que el que no quiere oír";
                 break;
             case 9:
-                frase = "Ojos que no ven, corazón que no siente";
+                frase = "Ojos que no ven corazón que no siente";
                 break;
 
         }
@@ -86,9 +86,9 @@ public class Ronda {
                 cambiarNombre();
                 menuPartida();
             } else if (eleccionOpcionMenu == 2) {
-                System.out.println("Creadores de este juego humilde con moneda de venezuela PRAY FOR VENEZUELA!!");
-                System.out.println("1. Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
-                System.out.println("2. Pedro menos Listo Campelo rico: " + "\t https://github.com/WorkPedroCampelo");
+                System.out.println("Creadores de este humilde juego...");
+                System.out.println("-Joel Ninahuaman Quintanilla :" + "\t https://github.com/joeljnq/");
+                System.out.println("-Pedro Campelo Rico: " + "\t https://github.com/WorkPedroCampelo");
             } else if (eleccionOpcionMenu == 3) {
                 cambiarNombre();
 
