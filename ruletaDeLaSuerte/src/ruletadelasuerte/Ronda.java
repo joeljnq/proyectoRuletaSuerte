@@ -32,7 +32,7 @@ public class Ronda {
     public static String crearFrase() {
         int selectorFrase = 0;
         Random rnd = new Random();
-        selectorFrase = rnd.nextInt(4);
+        selectorFrase = rnd.nextInt(10);
         switch (selectorFrase) {
             case 0:
                 frase = "hola mundo";
